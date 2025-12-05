@@ -1,0 +1,22 @@
+{
+    "id": "lesson-3a",
+    "title": "Lesson 3a: Understanding Supply & Demand",
+    "steps": [
+        {
+            "title": "Economics 101",
+            "content": "<p>The oldest rule in economics: <strong>Supply and Demand</strong> determine price.</p><div class=\"info-box\"><strong>The Basics:</strong><br>• <strong>High Demand:</strong> Everyone buying → Prices go UP ↑<br>• <strong>High Supply:</strong> Everyone selling → Prices go DOWN ↓<br>• <strong>Balanced:</strong> Equal buyers and sellers → Prices STABLE ↔</div><p style=\"margin-top: 15px;\">In our game:</p><ul style=\"margin: 10px 0 10px 20px;\"><li>Players trade commodities all the time</li><li>Each trade is either a BUY or SELL</li><li>We track the volume of each</li><li>We calculate pressure from the ratio</li></ul>"
+        },
+        {
+            "title": "The Demand Ratio Formula",
+            "content": "<p>We measure market pressure with a simple ratio:</p><div class=\"code-block\"><code class=\"language-javascript\">demandRatio = buyVolume / (buyVolume + sellVolume)</code></div><p style=\"margin-top: 15px;\"><strong>What does each ratio mean?</strong></p><div class=\"code-block\"><code class=\"language-text\">0.0 = Only sellers, no buyers (CRASH! Price plummets)\n0.2 = 1 buyer per 4 sellers (Panic selling)\n0.5 = Equal buyers and sellers (Balanced market)\n0.8 = 4 buyers per seller (High demand)\n1.0 = Only buyers, no sellers (MOON! Price skyrockets)</code></div>"
+        },
+        {
+            "title": "Real Examples",
+            "content": "<p><strong>Example 1: Iron Ore Craze</strong></p><div class=\"hint\"><strong>Trades in the last hour:</strong><br>• 8000 units bought<br>• 2000 units sold<br><br>Demand Ratio = 8000 / (8000 + 2000) = 0.8<br><br>Result: HIGH DEMAND → Price goes UP 📈</div><p style=\"margin-top: 15px;\"><strong>Example 2: Uranium Panic</strong></p><div class=\"hint\"><strong>Trades in the last hour:</strong><br>• 500 units bought<br>• 4500 units sold<br><br>Demand Ratio = 500 / (500 + 4500) = 0.1<br><br>Result: PANIC SELLING → Price goes DOWN 📉</div>"
+        },
+        {
+            "title": "Lesson 3a Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You understand the economic principle that drives markets.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Know supply & demand basics</div><div class=\"achievement\">✓ Understand demand ratio formula</div><div class=\"achievement\">✓ Can interpret the numbers</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 3b - Building the Market Analyzer</p>"
+        }
+    ]
+}

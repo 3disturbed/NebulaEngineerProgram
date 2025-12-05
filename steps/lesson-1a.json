@@ -1,0 +1,22 @@
+{
+    "id": "lesson-1a",
+    "title": "Lesson 1a: Project Setup",
+    "steps": [
+        {
+            "title": "Welcome to the Federation",
+            "content": "<p>You are now a <strong>Junior Engineer</strong> for the Galactic Trade Federation.</p><p>Your mission: Build the <strong>Market Microservice</strong> that powers the economy of the Nebula Nexus universe.</p><div class=\"info-box\"><strong>What is a Microservice?</strong><br>It's a small, independent program that does ONE thing very well.<br>Our service will:<ul><li>Calculate commodity prices</li><li>Manage supply and demand</li><li>Handle player trades</li></ul></div>"
+        },
+        {
+            "title": "Create Project Structure",
+            "content": "<p>Open your terminal and create these folders:</p><div class=\"command\">mkdir \"c:\\Game Concept\"<br>cd \"c:\\Game Concept\"<br>mkdir src\\services<br>mkdir src\\config<br>mkdir src\\utils<br>mkdir data\\market-history<br>mkdir docs\\lessons</div><p style=\"margin-top: 15px;\"><strong>Your structure should look like this:</strong></p><div class=\"file-tree\"><span class=\"dir\">c:\\Game Concept\\</span><span class=\"connector\">├──</span> <span class=\"dir\">src\\</span> <span class=\"comment\">(where code lives)</span><span class=\"connector\">│   ├──</span> <span class=\"dir\">services\\</span> <span class=\"comment\">(microservice code)</span><span class=\"connector\">│   ├──</span> <span class=\"dir\">config\\</span> <span class=\"comment\">(settings & magic numbers)</span><span class=\"connector\">│   └──</span> <span class=\"dir\">utils\\</span> <span class=\"comment\">(helper functions)</span><span class=\"connector\">├──</span> <span class=\"dir\">data\\</span> <span class=\"comment\">(JSON database files)</span><span class=\"connector\">│   └──</span> <span class=\"dir\">market-history\\</span> <span class=\"comment\">(price archives)</span><span class=\"connector\">├──</span> <span class=\"dir\">docs\\</span><span class=\"connector\">│   └──</span> <span class=\"dir\">lessons\\</span> <span class=\"comment\">(you are here! 👈)</span><span class=\"connector\">└──</span> <span class=\"file\">package.json</span> <span class=\"comment\">(project metadata)</span></div>"
+        },
+        {
+            "title": "Create Package.json",
+            "content": "<p>Create a new file called <strong>package.json</strong> in the root (c:\\Game Concept\\):</p><div class=\"code-block\"><code class=\"language-json\">{\n  \"name\": \"nebula-nexus-market-service\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Federation Market Price Microservice\",\n  \"main\": \"market-service.js\",\n  \"scripts\": {\n    \"start\": \"node market-service.js\",\n    \"test\": \"node test-time.js\"\n  },\n  \"keywords\": [\"microservice\", \"market\", \"game\"],\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}</code></div><p style=\"margin-top: 15px;\"><strong>Why no npm packages?</strong> We're using only Node.js built-in modules. This keeps it lightweight, secure, and simple!</p>"
+        },
+        {
+            "title": "Verify Your Setup",
+            "content": "<p>Check that everything is in place:</p><div class=\"command\">dir src /s</div><p style=\"margin-top: 15px; color: #666;\">You should see all your folders listed.</p><div class=\"hint\">If folders don't appear, check that you're in the right directory (c:\\Game Concept)</div>"
+        }
+    ]
+}

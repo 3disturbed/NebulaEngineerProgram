@@ -1,0 +1,22 @@
+{
+    "id": "lesson-3b",
+    "title": "Lesson 3b: Building the Market Analyzer",
+    "steps": [
+        {
+            "title": "Overview",
+            "content": "<p>We'll create a <code>MarketAnalyzer</code> class that takes trading data and calculates the demand ratio.</p><div class=\"info-box\"><strong>What it does:</strong><br>• Takes an array of trades<br>• Counts buy and sell volumes<br>• Calculates demand ratio<br>• Returns a number 0.0 to 1.0</div>"
+        },
+        {
+            "title": "Create MarketAnalyzer.js",
+            "content": "<p>Create <code>src/services/MarketAnalyzer.js</code>:</p><div class=\"code-block\"><code class=\"language-javascript\">/**\n * MarketAnalyzer - Calculates market pressure from trading data\n */\nclass MarketAnalyzer {\n    /**\n     * Analyze trades and calculate demand ratio\n     * \n     * @param {array} trades - Array of trade objects\n     *        Example: [{ type: 'buy', amount: 100 }, { type: 'sell', amount: 50 }]\n     * @returns {number} Demand ratio (0.0 to 1.0)\n     *         0.0 = only sellers\n     *         0.5 = balanced\n     *         1.0 = only buyers\n     */\n    analyze(trades) {\n        let buyVolume = 0;\n        let sellVolume = 0;\n\n        // Count buy and sell volumes\n        trades.forEach(trade => {\n            if (trade.type === 'buy') {\n                buyVolume += trade.amount;\n            } else if (trade.type === 'sell') {\n                sellVolume += trade.amount;\n            }\n        });\n\n        const total = buyVolume + sellVolume;\n        \n        // If no trades, market is neutral\n        if (total === 0) {\n            return 0.5;\n        }\n\n        // Return the demand ratio\n        return buyVolume / total;\n    }\n}\n\nmodule.exports = new MarketAnalyzer();</code></div><div class=\"read-more\" style=\"margin-top: 15px; font-size: 0.9em;\"><strong>Read more on MDN:</strong><ul style=\"margin-top: 5px;\"><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach\" target=\"_blank\">Array.prototype.forEach()</a></li></ul></div>"
+        },
+        {
+            "title": "How to Use It",
+            "content": "<p><strong>Example usage:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">const analyzer = require('./src/services/MarketAnalyzer');\n\n// Get trades from your database\nconst trades = [\n    { type: 'buy', amount: 500 },\n    { type: 'sell', amount: 100 },\n    { type: 'buy', amount: 300 },\n    { type: 'sell', amount: 200 }\n];\n\n// Calculate demand\nconst demandRatio = analyzer.analyze(trades);\nconsole.log('Demand Ratio:', demandRatio);  // 0.625\n\n// Interpret the result\nif (demandRatio > 0.7) {\n    console.log('HIGH DEMAND - Price should go up!');\n} else if (demandRatio < 0.3) {\n    console.log('PANIC SELLING - Price should go down!');\n} else {\n    console.log('Balanced market - Price stable');\n}</code></div>"
+        },
+        {
+            "title": "Lesson 3b Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a market analyzer that reads trading data.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Created MarketAnalyzer class</div><div class=\"achievement\">✓ Implemented demand ratio calculation</div><div class=\"achievement\">✓ Know how to use it in your code</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 4 - Price Calculator</p>"
+        }
+    ]
+}

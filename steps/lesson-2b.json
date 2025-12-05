@@ -1,0 +1,26 @@
+{
+    "id": "lesson-2b",
+    "title": "Lesson 2b: The Safe Write Pattern",
+    "steps": [
+        {
+            "title": "The Problem",
+            "content": "<p>We know JSON files can get corrupted if we write to them directly and something goes wrong mid-write.</p><div class=\"hint\"><strong>Remember:</strong> Corrupted files = unreadable data = broken game 💥</div><p style=\"margin-top: 15px;\">We need a way to write data that is <strong>atomic</strong> - it either succeeds completely or fails completely. No half-written files.</p>"
+        },
+        {
+            "title": "The Solution: Write-Then-Rename",
+            "content": "<p>Instead of writing directly to <code>markets.json</code>, we use a <strong>three-step pattern</strong>:</p><ol style=\"margin: 15px 0 15px 20px; font-weight: 500;\"><li><strong>Write to a temporary file</strong> (e.g., <code>markets.json.tmp</code>)</li><li><strong>Verify the write succeeded</strong> (optional but good practice)</li><li><strong>Rename</strong> the temp file to replace the real file (ATOMIC!)</li></ol><div class=\"info-box\"><strong>Why this works:</strong><br><br>File rename operations are <strong>atomic</strong> at the operating system level. This means:<br>• The rename either completes fully<br>• Or it fails completely<br>• Never partially (no corrupt state)<br><br>You either have the old file OR the new file, never both, never neither.</div>"
+        },
+        {
+            "title": "Visual Walkthrough",
+            "content": "<p><strong>The Process:</strong></p><div class=\"code-block\" style=\"background: rgba(0,0,0,0.3); border-left: 4px solid var(--primary-color);\"><code style=\"white-space: pre;\">Before:\n  markets.json (old data)\n\nStep 1: Write to temp file\n  markets.json (old data)\n  markets.json.tmp (new data, being written...)\n\nStep 2: Verify\n  ✓ Temp file is valid JSON? Yes!\n  ✓ Temp file is complete? Yes!\n\nStep 3: Rename (Atomic!)\n  markets.json (new data) ← renamed from .tmp\n\nAfter:\n  markets.json (new data)\n  markets.json.tmp (deleted)</code></div>"
+        },
+        {
+            "title": "What if Something Breaks?",
+            "content": "<p><strong>Scenario 1: Crash while writing to .tmp</strong></p><p>Result: <code>markets.json.tmp</code> is corrupted, but <code>markets.json</code> is untouched ✓<br>Solution: Delete the .tmp and try again</p><p style=\"margin-top: 15px;\"><strong>Scenario 2: Crash during rename</strong></p><p>Result: OS guarantees the rename completes or fails entirely ✓<br>Solution: Most OS support atomic renames (Windows, Linux, Mac)</p><p style=\"margin-top: 15px;\"><strong>Scenario 3: Everything succeeds</strong></p><p>Result: <code>markets.json</code> now contains perfect new data ✓<br>Old data is completely replaced</p>"
+        },
+        {
+            "title": "Lesson 2b Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You know the pattern that prevents data corruption.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Understand the Safe Write Pattern</div><div class=\"achievement\">✓ Know why rename is atomic</div><div class=\"achievement\">✓ Can handle all failure scenarios</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 2c - Building the Database Class</p>"
+        }
+    ]
+}

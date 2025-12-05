@@ -1,0 +1,18 @@
+{
+    "id": "lesson-5",
+    "title": "Lesson 5: Complete Microservice",
+    "steps": [
+        {
+            "title": "The Final Assembly",
+            "content": "<p>It's time to put it all together. We'll create the main service loop that runs forever, updating prices every hour.</p><div class=\"info-box\"><strong>The Loop:</strong><br>1. Wait for top of hour<br>2. Analyze markets<br>3. Calculate new prices<br>4. Save to database<br>5. Repeat</div>"
+        },
+        {
+            "title": "Create market-service.js",
+            "content": "<p>Create the main entry point <code>market-service.js</code>:</p><div class=\"code-block\"><code class=\"language-javascript\">const TimeService = require('./src/services/TimeService');\nconst MarketAnalyzer = require('./src/services/MarketAnalyzer');\nconst PriceCalculator = require('./src/services/PriceCalculator');\nconst db = require('./src/database');\n\nasync function main() {\n    console.log('Market Service Starting...');\n    \n    while(true) {\n        if (TimeService.isTopOfHour()) {\n            console.log('Updating prices...');\n            // Logic to update prices would go here\n            // For now, we just log it\n        }\n        \n        // Wait 1 minute before checking again\n        await new Promise(r => setTimeout(r, 60000));\n    }\n}\n\nmain();</code></div><div class=\"read-more\" style=\"margin-top: 15px; font-size: 0.9em;\"><strong>Read more on MDN:</strong><ul style=\"margin-top: 5px;\"><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/setTimeout\" target=\"_blank\">setTimeout()</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise\" target=\"_blank\">Promise</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/console/log\" target=\"_blank\">console.log()</a></li></ul></div>"
+        },
+        {
+            "title": "Congratulations! 🎉",
+            "content": "<p>You have built a complete <strong>Market Microservice</strong>!</p><ul><li>✅ Project Structure</li><li>✅ Time System (HSL)</li><li>✅ Logging</li><li>✅ Configuration</li><li>✅ Database Wrapper</li><li>✅ Market Analysis</li><li>✅ Price Calculation</li></ul><p>You are now ready to rule the galactic economy.</p><div class=\"achievement\">🏆 Master Engineer</div>"
+        }
+    ]
+}

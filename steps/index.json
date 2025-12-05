@@ -1,0 +1,234 @@
+[
+    {
+        "id": "lesson-1a",
+        "file": "lesson-1a.json",
+        "title": "Lesson 1a: Project Setup",
+        "duration": "10 minutes",
+        "difficulty": "Beginner",
+        "description": "Initialize your Node.js project and folder structure"
+    },
+    {
+        "id": "lesson-1b",
+        "file": "lesson-1b.json",
+        "title": "Lesson 1b: TimeService",
+        "duration": "12 minutes",
+        "difficulty": "Beginner-Intermediate",
+        "description": "Build Hours Since Launch (HSL) time system"
+    },
+    {
+        "id": "lesson-1c",
+        "file": "lesson-1c.json",
+        "title": "Lesson 1c: Logger Utility",
+        "duration": "10 minutes",
+        "difficulty": "Beginner",
+        "description": "Build structured logging with timestamps"
+    },
+    {
+        "id": "lesson-1d",
+        "file": "lesson-1d.json",
+        "title": "Lesson 1d: Market Configuration",
+        "duration": "12 minutes",
+        "difficulty": "Beginner",
+        "description": "Create magic numbers that control your economy"
+    },
+    {
+        "id": "lesson-2a",
+        "file": "lesson-2a.json",
+        "title": "Lesson 2a: Why Store Data?",
+        "duration": "8 minutes",
+        "difficulty": "Beginner",
+        "description": "Learn why persistent storage matters and compare options"
+    },
+    {
+        "id": "lesson-2b",
+        "file": "lesson-2b.json",
+        "title": "Lesson 2b: The Safe Write Pattern",
+        "duration": "10 minutes",
+        "difficulty": "Intermediate",
+        "description": "Understand the write-then-rename pattern for atomic operations"
+    },
+    {
+        "id": "lesson-2c",
+        "file": "lesson-2c.json",
+        "title": "Lesson 2c: Building the Database Class",
+        "duration": "15 minutes",
+        "difficulty": "Intermediate",
+        "description": "Implement a reusable Database wrapper with error handling"
+    },
+    {
+        "id": "lesson-2d",
+        "file": "lesson-2d.json",
+        "title": "Lesson 2d: Testing the Database",
+        "duration": "12 minutes",
+        "difficulty": "Beginner-Intermediate",
+        "description": "Test save and load operations with various data types"
+    },
+    {
+        "id": "lesson-3a",
+        "file": "lesson-3a.json",
+        "title": "Lesson 3a: Understanding Supply & Demand",
+        "duration": "10 minutes",
+        "difficulty": "Intermediate",
+        "description": "Learn supply/demand economics and calculate the demand ratio"
+    },
+    {
+        "id": "lesson-3b",
+        "file": "lesson-3b.json",
+        "title": "Lesson 3b: Building the Market Analyzer",
+        "duration": "12 minutes",
+        "difficulty": "Intermediate",
+        "description": "Implement the MarketAnalyzer class to calculate market trends"
+    },
+    {
+        "id": "lesson-4a",
+        "file": "lesson-4a.json",
+        "title": "Lesson 4a: The Price Formula",
+        "duration": "12 minutes",
+        "difficulty": "Intermediate",
+        "description": "Learn the formula that converts demand into price changes"
+    },
+    {
+        "id": "lesson-4b",
+        "file": "lesson-4b.json",
+        "title": "Lesson 4b: Building the Price Calculator",
+        "duration": "10 minutes",
+        "difficulty": "Intermediate",
+        "description": "Implement PriceCalculator to adjust prices based on demand"
+    },
+    {
+        "id": "lesson-5a",
+        "file": "lesson-5a.json",
+        "title": "Lesson 5a: The Main Service Loop",
+        "duration": "10 minutes",
+        "difficulty": "Intermediate",
+        "description": "Learn how all components work together in the main service loop"
+    },
+    {
+        "id": "lesson-5b",
+        "file": "lesson-5b.json",
+        "title": "Lesson 5b: Creating market-service.js",
+        "duration": "12 minutes",
+        "difficulty": "Intermediate",
+        "description": "Assemble complete market-service.js and celebrate completion!"
+    },
+    {
+        "id": "lesson-6a",
+        "file": "lesson-6a.json",
+        "title": "Lesson 6a: Building a REST API",
+        "duration": "12 minutes",
+        "difficulty": "Intermediate-Advanced",
+        "description": "Create REST API endpoints with Express.js to share market data"
+    },
+    {
+        "id": "lesson-6b",
+        "file": "lesson-6b.json",
+        "title": "Lesson 6b: Advanced API Endpoints",
+        "duration": "14 minutes",
+        "difficulty": "Intermediate-Advanced",
+        "description": "Add filtering, sorting, history, and statistics endpoints"
+    },
+    {
+        "id": "lesson-6c",
+        "file": "lesson-6c.json",
+        "title": "Lesson 6c: API Authentication & Security",
+        "duration": "13 minutes",
+        "difficulty": "Advanced",
+        "description": "Implement API keys, rate limiting, and security headers"
+    },
+    {
+        "id": "lesson-6d",
+        "file": "lesson-6d.json",
+        "title": "Lesson 6d: Real-Time Updates with WebSockets",
+        "duration": "13 minutes",
+        "difficulty": "Advanced",
+        "description": "Push live market updates to clients with Socket.IO"
+    },
+    {
+        "id": "lesson-6e",
+        "file": "lesson-6e.json",
+        "title": "Lesson 6e: Deployment & Production Ready",
+        "duration": "15 minutes",
+        "difficulty": "Advanced",
+        "description": "Deploy to production with logging, monitoring, and Docker"
+    },
+    {
+        "id": "lesson-7a",
+        "file": "lesson-7a.json",
+        "title": "Lesson 7a: Canvas Fundamentals",
+        "duration": "12 minutes",
+        "difficulty": "Intermediate",
+        "description": "Master Canvas 2D API - shapes, coordinates, text, and gradients"
+    },
+    {
+        "id": "lesson-7b",
+        "file": "lesson-7b.json",
+        "title": "Lesson 7b: Building Price Charts",
+        "duration": "13 minutes",
+        "difficulty": "Intermediate-Advanced",
+        "description": "Visualize market data with axes, grids, and line charts"
+    },
+    {
+        "id": "lesson-7c",
+        "file": "lesson-7c.json",
+        "title": "Lesson 7c: Market Heatmaps",
+        "duration": "13 minutes",
+        "difficulty": "Intermediate-Advanced",
+        "description": "Create supply/demand heatmaps with color mapping and interactivity"
+    },
+    {
+        "id": "lesson-7d",
+        "file": "lesson-7d.json",
+        "title": "Lesson 7d: 2D Coordinate Systems",
+        "duration": "13 minutes",
+        "difficulty": "Intermediate",
+        "description": "Build galaxy sectors, orbital mechanics, and distance calculations"
+    },
+    {
+        "id": "lesson-7e",
+        "file": "lesson-7e.json",
+        "title": "Lesson 7e: Galaxy Rendering",
+        "duration": "14 minutes",
+        "difficulty": "Advanced",
+        "description": "Render star fields, sectors, and camera controls with animations"
+    },
+    {
+        "id": "lesson-7f",
+        "file": "lesson-7f.json",
+        "title": "Lesson 7f: Navigation Dashboard",
+        "duration": "13 minutes",
+        "difficulty": "Advanced",
+        "description": "Build navigation systems with route calculation and travel simulation"
+    },
+    {
+        "id": "lesson-7g",
+        "file": "lesson-7g.json",
+        "title": "Lesson 7g: Web Dashboard",
+        "duration": "14 minutes",
+        "difficulty": "Advanced",
+        "description": "Combine charts, maps, and panels into a unified web dashboard"
+    },
+    {
+        "id": "lesson-7h",
+        "file": "lesson-7h.json",
+        "title": "Lesson 7h: Game State Management",
+        "duration": "12 minutes",
+        "difficulty": "Advanced",
+        "description": "Build the central brain of your game with state management"
+    },
+    {
+        "id": "lesson-7i",
+        "file": "lesson-7i.json",
+        "title": "Lesson 7i: The Game Loop",
+        "duration": "12 minutes",
+        "difficulty": "Advanced",
+        "description": "Implement the heartbeat of your game with time management"
+    },
+    {
+        "id": "lesson-7j",
+        "file": "lesson-7j.json",
+        "title": "Lesson 7j: Complete Game Interface",
+        "duration": "15 minutes",
+        "difficulty": "Advanced",
+        "description": "Connect UI, input, and state for a complete playable game"
+    }
+]

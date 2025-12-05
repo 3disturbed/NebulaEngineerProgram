@@ -1,0 +1,18 @@
+{
+    "id": "lesson-4",
+    "title": "Lesson 4: Price Calculator",
+    "steps": [
+        {
+            "title": "Playing God with Prices",
+            "content": "<p>Now we turn our analysis into actual price changes. We need a formula that is fair but responsive.</p><div class=\"info-box\"><strong>The Formula:</strong><br>New Price = Old Price + Demand Adjustment + Supply Adjustment + Noise</div>"
+        },
+        {
+            "title": "Demand Adjustment",
+            "content": "<p>How much should price change based on demand?</p><div class=\"code-block\"><code class=\"language-javascript\">// (Ratio - 0.5) centers it around 0 (-0.5 to +0.5)\n// * 2 scales it to -1 to +1\n// * 0.10 limits max change to 10%\nadjustment = (demandRatio - 0.5) * 2 * currentPrice * 0.10;</code></div><p>If everyone wants it (Ratio 1.0), price goes up 10%. If nobody wants it (Ratio 0.0), price drops 10%.</p><button class=\"btn btn-lab\" onclick=\"openLab('labBtn-4-0')\">🧪 Try the Price Lab</button>"
+        },
+        {
+            "title": "Create PriceCalculator.js",
+            "content": "<p>Create <code>src/services/PriceCalculator.js</code>:</p><div class=\"code-block\"><code class=\"language-javascript\">class PriceCalculator {\n    calculateNewPrice(currentPrice, demandRatio) {\n        const maxChange = 0.10; // 10%\n        \n        // 1. Calculate pressure (-1 to +1)\n        const pressure = (demandRatio - 0.5) * 2;\n        \n        // 2. Calculate adjustment amount\n        const adjustment = currentPrice * pressure * maxChange;\n        \n        // 3. Apply and round\n        return Math.floor(currentPrice + adjustment);\n    }\n}\n\nmodule.exports = new PriceCalculator();</code></div><div class=\"read-more\" style=\"margin-top: 15px; font-size: 0.9em;\"><strong>Read more on MDN:</strong><ul style=\"margin-top: 5px;\"><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor\" target=\"_blank\">Math.floor()</a></li></ul></div>"
+        }
+    ]
+}

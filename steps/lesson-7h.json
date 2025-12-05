@@ -1,0 +1,26 @@
+{
+    "id": "lesson-7h",
+    "title": "Lesson 7h: Game State Management",
+    "steps": [
+        {
+            "title": "State Architecture",
+            "content": "<p>A complex game needs a single source of truth called the <strong>Game State</strong>.</p><div class=\"info-box\"><strong>Why centralize state?</strong><br>• <strong>Consistency:</strong> All parts of the game see the same data<br>• <strong>Persistence:</strong> Easy to save/load the entire game<br>• <strong>Debugging:</strong> You can inspect one object to see everything<br>• <strong>Reactivity:</strong> UI updates automatically when state changes</div><p style=\"margin-top: 15px;\"><strong>State structure:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">const initialState = {\n    player: { credits: 1000, inventory: {} },\n    market: { prices: {}, supply: {} },\n    navigation: { x: 0, y: 0, target: null },\n    clock: { time: 0, day: 1 }\n};</code></div>"
+        },
+        {
+            "title": "The GameState Class",
+            "content": "<p><strong>Create the core state manager:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">class GameState {\n    constructor() {\n        // Initialize state\n        this.player = {\n            credits: 5000,\n            inventory: new Map(),\n            level: 1,\n            xp: 0\n        };\n        \n        this.market = {\n            prices: {},\n            supply: {},\n            demand: {},\n            lastUpdate: 0\n        };\n        \n        this.navigation = {\n            position: { x: 5, y: 5 },\n            target: null,\n            traveling: false,\n            eta: 0\n        };\n        \n        this.clock = {\n            totalHours: 0,\n            dayLength: 24,\n            year: 1\n        };\n        \n        this.listeners = [];\n        this.history = [];\n    }\n    \n    // Allow UI to subscribe to changes\n    subscribe(callback) {\n        this.listeners.push(callback);\n    }\n    \n    // Notify all listeners of changes\n    notifyListeners() {\n        this.listeners.forEach(cb => cb(this));\n    }\n}</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map\" target=\"_blank\">MDN: Map</a> - Better than Objects for inventory</div>"
+        },
+        {
+            "title": "Event System",
+            "content": "<p><strong>Track what happens in the game:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">    // Add to GameState class\n    addEvent(message) {\n        this.history.push({\n            time: this.clock.totalHours,\n            message\n        });\n        // Keep history manageable\n        if (this.history.length > 50) {\n            this.history.shift();\n        }\n    }\n    \n    // Example usage\n    // this.addEvent('Arrived at Mars Station');</code></div><p style=\"margin-top: 15px;\"><strong>Why use an event log?</strong></p><ul style=\"margin: 10px 0 10px 20px;\"><li>Show player what just happened</li><li>Debug game logic issues</li><li>Create a narrative history</li></ul>"
+        },
+        {
+            "title": "Managing Inventory & Market",
+            "content": "<p><strong>Implement trading logic:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">    // Add to GameState class\n    buyItem(commodity, quantity, pricePerUnit) {\n        const cost = quantity * pricePerUnit;\n        if (this.player.credits < cost) return false;\n        \n        // Deduct credits\n        this.player.credits -= cost;\n        \n        // Add to inventory\n        const current = this.player.inventory.get(commodity) || 0;\n        this.player.inventory.set(commodity, current + quantity);\n        \n        this.addEvent(`Bought ${quantity}x ${commodity} for ${cost} credits`);\n        this.notifyListeners();\n        return true;\n    }\n    \n    sellItem(commodity, quantity, pricePerUnit) {\n        const current = this.player.inventory.get(commodity) || 0;\n        if (current < quantity) return false;\n        \n        // Add credits\n        const revenue = quantity * pricePerUnit;\n        this.player.credits += revenue;\n        \n        // Remove from inventory\n        this.player.inventory.set(commodity, current - quantity);\n        \n        this.addEvent(`Sold ${quantity}x ${commodity} for ${revenue} credits`);\n        this.notifyListeners();\n        return true;\n    }</code></div>"
+        },
+        {
+            "title": "Lesson 7h Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You've built the brain of your game.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Centralized game state</div><div class=\"achievement\">✓ Observer pattern (subscribe/notify)</div><div class=\"achievement\">✓ Event logging system</div><div class=\"achievement\">✓ Inventory management logic</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7i - The Game Loop</p>"
+        }
+    ]
+}

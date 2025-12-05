@@ -1,0 +1,22 @@
+{
+    "id": "lesson-5a",
+    "title": "Lesson 5a: The Main Service Loop",
+    "steps": [
+        {
+            "title": "The Big Picture",
+            "content": "<p>Everything we've built comes together in one main service loop:</p><div class=\"code-block\"><code class=\"language-javascript\">// All our tools\nconst database = new Database('./market.db');\nconst analyzer = new MarketAnalyzer();\nconst calculator = new PriceCalculator();\n\n// Market items to track\nconst items = [\n    { name: 'Iron Ore', price: 100, supply: 50, demand: 80 },\n    { name: 'Copper Ore', price: 75, supply: 60, demand: 60 },\n    { name: 'Uranium Ore', price: 500, supply: 20, demand: 2 }\n];</code></div><p style=\"margin-top: 15px;\"><strong>This is what happens every market tick:</strong></p><ol style=\"margin: 10px 0 10px 20px;\"><li>Analyze current demand</li><li>Calculate new prices</li><li>Save to database</li><li>Wait and repeat</li></ol>"
+        },
+        {
+            "title": "The Service Loop Code",
+            "content": "<p>Here's the complete market service loop:</p><div class=\"code-block\"><code class=\"language-javascript\">// How often to update market (milliseconds)\nconst UPDATE_INTERVAL = 5000; // 5 seconds\n\n// The main service loop\nfunction startMarketService() {\n    console.log('🚀 Market Service Starting...');\n    \n    setInterval(() => {\n        try {\n            // Step 1: Analyze demand\n            analyzer.analyzePrices(items);\n            \n            // Step 2: Adjust prices\n            calculator.adjustPrices(items, analyzer);\n            \n            // Step 3: Save to database\n            const timestamp = new Date().toISOString();\n            const marketState = {\n                timestamp: timestamp,\n                items: items.map(item => ({\n                    name: item.name,\n                    price: parseFloat(item.price.toFixed(2)),\n                    demand: analyzer.getDemandRatio(item.name)\n                }))\n            };\n            \n            database.write('market-' + timestamp, marketState);\n            \n            // Step 4: Display update\n            console.log(`[${timestamp}] Market Updated:`);\n            items.forEach(item => {\n                const ratio = analyzer.getDemandRatio(item.name);\n                console.log(`  ${item.name}: $${item.price.toFixed(2)} (demand: ${(ratio*100).toFixed(0)}%)`);\n            });\n            \n        } catch (error) {\n            console.error('❌ Market update failed:', error);\n        }\n    }, UPDATE_INTERVAL);\n}\n\n// Start it all\nstartMarketService();</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/setInterval\" target=\"_blank\">MDN: setInterval()</a> - Run code repeatedly</div>"
+        },
+        {
+            "title": "What's Happening Step by Step",
+            "content": "<p><strong>Every 5 seconds:</strong></p><div class=\"hint\"><strong>Step 1 - Analyze:</strong><br>Calculate supply-to-demand ratios<br><code>analyzer.analyzePrices(items)</code><br><br><strong>Step 2 - Calculate:</strong><br>Adjust each price based on demand<br><code>calculator.adjustPrices(items, analyzer)</code><br><br><strong>Step 3 - Save:</strong><br>Store the complete market state<br><code>database.write('market-' + timestamp, marketState)</code><br><br><strong>Step 4 - Display:</strong><br>Print the results for monitoring</div><p style=\"margin-top: 15px;\"><strong>Error Handling:</strong></p><p>The try-catch ensures if one update fails, the service keeps running</p>"
+        },
+        {
+            "title": "Lesson 5a Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You understand the complete market service loop.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ All components working together</div><div class=\"achievement\">✓ Understand the main loop structure</div><div class=\"achievement\">✓ See how data flows through the system</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 5b - Creating market-service.js</p>"
+        }
+    ]
+}

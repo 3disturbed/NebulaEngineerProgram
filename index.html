@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebula Engineer Program - Interactive Lessons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">
+            <span>🚀 Nebula Engineer Program</span>
+        </div>
+        
+        <div class="user-profile-display" id="userProfileDisplay" style="display:none;">
+            <div class="user-name" id="displayUserName">Guest</div>
+            <div class="user-score">💎 <span id="displayUserScore">0</span> XP</div>
+            <button id="switchUserBtn" class="btn-text">Switch User</button>
+        </div>
+
+        <div class="progress-container" title="Overall Progress">
+            <div class="progress-bar" id="overallProgressBar"></div>
+        </div>
+        <ul class="lesson-list" id="lessonList">
+            <!-- Populated by JS -->
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="step-indicator" id="stepCounter">Step 1 of X</div>
+            <div class="progress-container" title="Section Progress">
+                <div class="progress-bar" id="sectionProgressBar"></div>
+            </div>
+            <!-- Could add user profile or progress here -->
+        </div>
+
+        <div class="content-area">
+            <div class="step-header-container">
+                <h1 class="step-title" id="stepTitle">Loading...</h1>
+                <span class="tick-icon" id="stepTick" title="Mark step as complete">✔</span>
+            </div>
+            <div class="step-body" id="stepContent">
+                <!-- Content goes here -->
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="prevBtn" disabled>← Previous</button>
+                <button class="btn btn-primary" id="nextBtn">Next Step →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lab Modal -->
+    <div id="labModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="labTitle">JavaScript Lab</h2>
+                <span class="close-modal" id="closeLabModal">&times;</span>
+            </div>
+            <div class="lab-container">
+                <div class="editor-pane">
+                    <h3 style="margin-bottom: 10px; color: var(--primary-color);">📝 Code Editor</h3>
+                    <textarea id="labCode" spellcheck="false"></textarea>
+                    <div style="margin-top: 10px; display: flex; gap: 10px;">
+                        <button class="btn btn-primary" id="runLabBtn" style="flex: 1;">▶ Run Code</button>
+                        <button class="btn btn-secondary" id="resetLabBtn" style="flex: 1;">↻ Clear Output</button>
+                    </div>
+                </div>
+                <div class="output-pane">
+                    <h3 style="margin-bottom: 10px; color: var(--primary-color);">📊 Output</h3>
+                    <div id="labOutput"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome / User Selection Modal -->
+    <div id="welcomeModal" class="modal" style="display: flex;">
+        <div class="modal-content welcome-content">
+            <div class="welcome-header">
+                <h1>Welcome to Nebula Engineer Program</h1>
+                <p>Select your profile to continue your journey.</p>
+            </div>
+            <div id="userList" class="user-list">
+                <!-- User buttons go here -->
+            </div>
+            <div class="new-user-form">
+                <input type="text" id="newUserName" placeholder="Enter your name" maxlength="15">
+                <button class="btn btn-primary" id="createUserBtn">Start New Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/labs.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

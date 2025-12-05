@@ -1,0 +1,26 @@
+{
+    "id": "lesson-4a",
+    "title": "Lesson 4a: The Price Formula",
+    "steps": [
+        {
+            "title": "The Challenge",
+            "content": "<p>Now we turn market analysis into actual price changes. We need a formula that is:</p><ul style=\"margin: 10px 0 10px 20px;\"><li><strong>Fair:</strong> Players see predictable market behavior</li><li><strong>Responsive:</strong> Prices actually move based on trading</li><li><strong>Stable:</strong> Prices don't crash or spike wildly</li></ul><div class=\"info-box\"><strong>The Goal:</strong><br>Use the demand ratio to adjust prices smoothly</div>"
+        },
+        {
+            "title": "Breaking Down the Formula",
+            "content": "<p><strong>The basic formula:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">adjustment = (demandRatio - 0.5) * 2 * currentPrice * maxChangePercent;</code></div><p style=\"margin-top: 15px;\"><strong>Let's break it down step by step:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Step 1: Center the ratio around 0\n(demandRatio - 0.5)\n// Examples:\n// 0.8 demand becomes: 0.8 - 0.5 = +0.3\n// 0.5 demand becomes: 0.5 - 0.5 = 0.0 (neutral)\n// 0.2 demand becomes: 0.2 - 0.5 = -0.3\n\n// Step 2: Scale to -1 to +1 range\n(demandRatio - 0.5) * 2\n// Examples:\n// 0.8 → 0.3 * 2 = +0.6 (strong upward pressure)\n// 0.5 → 0.0 * 2 = 0.0 (no pressure)\n// 0.2 → -0.3 * 2 = -0.6 (strong downward pressure)\n\n// Step 3: Calculate adjustment amount\ncurrentPrice * pressure * maxChangePercent\n// Example: $100 price, +0.6 pressure, 10% max\n// 100 * 0.6 * 0.10 = $6 increase</code></div>"
+        },
+        {
+            "title": "Real Examples",
+            "content": "<p><strong>Example 1: High Demand</strong></p><div class=\"hint\"><strong>Scenario:</strong> Iron ore, demand ratio 0.8<br>Current price: $100<br>Max change: 10%<br><br>Calculation:<br>pressure = (0.8 - 0.5) * 2 = 0.6<br>adjustment = $100 * 0.6 * 0.10 = $6<br>New price = $100 + $6 = <strong>$106</strong></div><p style=\"margin-top: 15px;\"><strong>Example 2: Panic Selling</strong></p><div class=\"hint\"><strong>Scenario:</strong> Uranium ore, demand ratio 0.1<br>Current price: $500<br>Max change: 10%<br><br>Calculation:<br>pressure = (0.1 - 0.5) * 2 = -0.8<br>adjustment = $500 * -0.8 * 0.10 = -$40<br>New price = $500 - $40 = <strong>$460</strong></div><p style=\"margin-top: 15px;\"><strong>Example 3: Balanced Market</strong></p><div class=\"hint\"><strong>Scenario:</strong> Copper ore, demand ratio 0.5<br>Current price: $75<br>Max change: 10%<br><br>Calculation:<br>pressure = (0.5 - 0.5) * 2 = 0<br>adjustment = $75 * 0 * 0.10 = $0<br>New price = $75 + $0 = <strong>$75</strong> (no change)</div>"
+        },
+        {
+            "title": "Why This Formula Works",
+            "content": "<p><strong>Prevents wild swings:</strong> The 10% cap means even extreme demand only changes price by 10%</p><p style=\"margin-top: 10px;\"><strong>Proportional to current price:</strong> $100 item changes by $10, $500 item changes by $50 (fair!)</p><p style=\"margin-top: 10px;\"><strong>Smooth transitions:</strong> Price gradually moves as demand changes, not in jumps</p><p style=\"margin-top: 10px;\"><strong>Neutral at 0.5:</strong> When demand is balanced, price doesn't move</p>"
+        },
+        {
+            "title": "Lesson 4a Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You understand the price adjustment formula.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Know the formula components</div><div class=\"achievement\">✓ Can calculate adjustments</div><div class=\"achievement\">✓ Understand why it works</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 4b - Building the Price Calculator</p>"
+        }
+    ]
+}

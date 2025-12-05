@@ -1,0 +1,26 @@
+{
+    "id": "lesson-7a",
+    "title": "Lesson 7a: Canvas Fundamentals",
+    "steps": [
+        {
+            "title": "What is Canvas?",
+            "content": "<p>HTML5 Canvas is a drawing surface where you can create graphics programmatically using JavaScript.</p><div class=\"info-box\"><strong>Canvas vs Traditional UI:</strong><br><br><strong>HTML elements:</strong> Text, buttons, boxes (limited, rigid)<br><strong>Canvas:</strong> Pixels, lines, curves, animations (unlimited, flexible)<br><br><strong>Perfect for:</strong> Charts, maps, games, real-time visualizations</div><p style=\"margin-top: 15px;\"><strong>Why Canvas for our game?</strong></p><ul style=\"margin: 10px 0 10px 20px;\"><li>Plot price movements as lines</li><li>Draw galaxy maps with hundreds of stars</li><li>Show supply/demand as heatmaps</li><li>Render player positions in real-time</li></ul>"
+        },
+        {
+            "title": "Canvas Basics",
+            "content": "<p><strong>Create a canvas element in HTML:</strong></p><div class=\"code-block\"><code class=\"language-html\">&lt;canvas id=\"myCanvas\" width=\"800\" height=\"600\"&gt;\n  Your browser doesn't support Canvas\n&lt;/canvas&gt;</code></div><p style=\"margin-top: 15px;\"><strong>Draw on canvas with JavaScript:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Get the canvas element\nconst canvas = document.getElementById('myCanvas');\nconst ctx = canvas.getContext('2d');\n\n// Draw a rectangle (x, y, width, height)\nctx.fillStyle = '#FF0000';  // Red color\nctx.fillRect(10, 10, 100, 50);\n\n// Draw a circle\nctx.fillStyle = '#00FF00';  // Green color\nctx.beginPath();\nctx.arc(200, 200, 50, 0, Math.PI * 2);\nctx.fill();\n\n// Draw a line\nctx.strokeStyle = '#0000FF';  // Blue color\nctx.lineWidth = 3;\nctx.beginPath();\nctx.moveTo(0, 0);\nctx.lineTo(800, 600);\nctx.stroke();</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D\" target=\"_blank\">MDN: Canvas 2D Context</a> - All drawing methods</div>"
+        },
+        {
+            "title": "Coordinate Systems & Transformations",
+            "content": "<p><strong>Canvas coordinate system:</strong></p><div class=\"hint\"><strong>Origin (0,0) is at top-left</strong><br>• X increases to the right<br>• Y increases downward<br><br>Canvas is like a grid: (column, row)</div><p style=\"margin-top: 15px;\"><strong>Transform to change drawing position:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Save the current drawing state\nctx.save();\n\n// Move the origin (translate)\nctx.translate(400, 300);\n\n// Draw at new origin\nctx.fillStyle = '#FF00FF';\nctx.fillRect(-25, -25, 50, 50);\n\n// Rotate around origin\nctx.rotate(Math.PI / 4);  // 45 degrees\nctx.fillStyle = '#FFFF00';\nctx.fillRect(-25, -25, 50, 50);\n\n// Scale\nctx.scale(2, 2);\nctx.fillStyle = '#00FFFF';\nctx.fillRect(-25, -25, 50, 50);\n\n// Restore original state\nctx.restore();</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate\" target=\"_blank\">MDN: Canvas translate()</a> - Move origin point</div>"
+        },
+        {
+            "title": "Drawing Text & Styling",
+            "content": "<p><strong>Add text labels to your drawings:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Set text properties\nctx.font = '24px Arial';\nctx.fillStyle = '#FFFFFF';\nctx.textAlign = 'center';\nctx.textBaseline = 'middle';\n\n// Draw text at position (x, y)\nctx.fillText('Market Price', 400, 50);\n\n// Draw with outline\nctx.strokeStyle = '#000000';\nctx.lineWidth = 2;\nctx.strokeText('Iron Ore: $150', 400, 100);\n\n// Measure text width\nconst metrics = ctx.measureText('$150');\nconsole.log('Text width: ' + metrics.width);</code></div><p style=\"margin-top: 15px;\"><strong>Styling with gradients:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Create a linear gradient\nconst gradient = ctx.createLinearGradient(0, 0, 800, 0);\ngradient.addColorStop(0, '#FF0000');      // Red at left\ngradient.addColorStop(0.5, '#FFFF00');    // Yellow in middle\ngradient.addColorStop(1, '#00FF00');      // Green at right\n\nctx.fillStyle = gradient;\nctx.fillRect(0, 0, 800, 600);</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font\" target=\"_blank\">MDN: Canvas font</a> - Text styling</div>"
+        },
+        {
+            "title": "Lesson 7a Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You understand canvas drawing fundamentals.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Create canvas elements</div><div class=\"achievement\">✓ Draw shapes and lines</div><div class=\"achievement\">✓ Use transformations</div><div class=\"achievement\">✓ Style with colors and gradients</div><div class=\"achievement\">✓ Add text labels</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7b - Building Price Charts</p>"
+        }
+    ]
+}

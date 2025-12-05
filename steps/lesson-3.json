@@ -1,0 +1,18 @@
+{
+    "id": "lesson-3",
+    "title": "Lesson 3: Market Analyzer",
+    "steps": [
+        {
+            "title": "Economics 101",
+            "content": "<p>We need to figure out if prices should go up or down based on player actions.</p><div class=\"info-box\"><strong>Supply & Demand:</strong><br>• <strong>High Demand:</strong> Everyone buying → Price goes UP<br>• <strong>High Supply:</strong> Everyone selling → Price goes DOWN</div><p>We'll calculate a <strong>Demand Ratio</strong> to measure this pressure.</p>"
+        },
+        {
+            "title": "The Demand Ratio",
+            "content": "<p>The formula for human desperation:</p><div class=\"code-block\"><code class=\"language-javascript\">demandRatio = buyVolume / (buyVolume + sellVolume)</code></div><ul><li><strong>0.8 - 1.0:</strong> High Demand (Price ↑)</li><li><strong>0.4 - 0.6:</strong> Balanced (Price ↔)</li><li><strong>0.0 - 0.2:</strong> Panic Selling (Price ↓)</li></ul><button class=\"btn btn-lab\" onclick=\"openLab('labBtn-3-0')\">🧪 Try the Demand Lab</button>"
+        },
+        {
+            "title": "Create MarketAnalyzer.js",
+            "content": "<p>Create <code>src/services/MarketAnalyzer.js</code>:</p><div class=\"code-block\"><code class=\"language-javascript\">class MarketAnalyzer {\n    analyze(trades) {\n        let buyVol = 0;\n        let sellVol = 0;\n\n        trades.forEach(t => {\n            if (t.type === 'buy') buyVol += t.amount;\n            if (t.type === 'sell') sellVol += t.amount;\n        });\n\n        const total = buyVol + sellVol;\n        if (total === 0) return 0.5; // Neutral\n\n        return buyVol / total;\n    }\n}\n\nmodule.exports = new MarketAnalyzer();</code></div><div class=\"read-more\" style=\"margin-top: 15px; font-size: 0.9em;\"><strong>Read more on MDN:</strong><ul style=\"margin-top: 5px;\"><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach\" target=\"_blank\">Array.prototype.forEach()</a></li></ul></div>"
+        }
+    ]
+}
