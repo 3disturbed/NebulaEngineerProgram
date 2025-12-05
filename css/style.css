@@ -566,3 +566,20 @@ textarea#labCode {
     background: #0f0;
 }
 
+/* Mobile Lab Layout */
+@media (max-width: 768px) {
+    .lab-container {
+        flex-direction: column;
+    }
+
+    .editor-pane {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        flex: 1;
+    }
+
+    .output-pane {
+        flex: 1;
+    }
+}
+
