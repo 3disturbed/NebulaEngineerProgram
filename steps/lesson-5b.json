@@ -15,6 +15,30 @@
             "content": "<p>To run the market service in Node.js:</p><div class=\"code-block\"><code class=\"language-bash\">node market-service.js</code></div><p style=\"margin-top: 15px;\"><strong>Expected output:</strong></p><div class=\"code-block\"><code class=\"language-text\">🚀 Market Service Started\nUpdating prices every 5 seconds...\n\n[2024-01-15T10:30:00.000Z]\n  Iron Ore: $106.00 (62% demand)\n  Copper Ore: $75.00 (50% demand)\n  Uranium Ore: $460.00 (9% demand)\n\n[2024-01-15T10:30:05.000Z]\n  Iron Ore: $112.36 (65% demand)\n  Copper Ore: $75.00 (50% demand)\n  Uranium Ore: $434.00 (8% demand)\n\n[2024-01-15T10:30:10.000Z]\n  Iron Ore: $119.00 (68% demand)\n  Copper Ore: $75.00 (50% demand)\n  Uranium Ore: $410.30 (7% demand)\n...</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString\" target=\"_blank\">MDN: Date.toISOString()</a> - Format timestamp</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the complete microservice.</p>",
+            "quiz": [
+                {
+                    "question": "What is the role of the `startMarketService` function?",
+                    "options": [
+                        "It calculates the price of one item",
+                        "It initializes the service and starts the interval loop to update the market repeatedly",
+                        "It deletes the database"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "In this microservice architecture, which component is responsible for persisting data?",
+                    "options": [
+                        "MarketAnalyzer",
+                        "PriceCalculator",
+                        "Database"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
             "title": "🎉 Congratulations! You're Done!",
             "content": "<p style=\"font-size: 1.2em; font-weight: bold;\">You've built a complete Node.js microservice!</p><div style=\"margin: 20px 0; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;\"><h3 style=\"margin: 0 0 10px 0;\">✨ What You Learned:</h3><ul style=\"margin: 10px 0 10px 20px; color: white;\"><li>Database safe-write patterns</li><li>Supply & demand economics</li><li>Market analysis algorithms</li><li>Dynamic price calculation</li><li>Microservice architecture</li><li>Error handling & reliability</li></ul></div><p style=\"margin-top: 20px;\"><strong>Next Steps:</strong></p><ul style=\"margin: 10px 0 10px 20px;\"><li>Add more items to track</li><li>Store data in a real database (SQLite, PostgreSQL)</li><li>Add API endpoints for external access</li><li>Create a web dashboard</li><li>Deploy to a server (AWS, Heroku, etc)</li></ul><div style=\"margin-top: 25px; padding: 15px; background: #2a2e47; border-left: 4px solid #f9e2af; border-radius: 8px;\"><p style=\"margin: 0;\"><strong>Keep learning!</strong> Markets are complex - research real financial data and pricing models to improve your microservice.</p></div>"
         }

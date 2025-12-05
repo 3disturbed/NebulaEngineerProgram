@@ -19,6 +19,30 @@
             "content": "<p>Handle errors gracefully and return proper status codes:</p><div class=\"code-block\"><code class=\"language-javascript\">// General error handler\napp.use((err, req, res, next) => {\n    console.error('API Error:', err);\n    \n    res.status(500).json({\n        error: 'Internal server error',\n        message: err.message\n    });\n});\n\n// 404 handler for unknown routes\napp.use((req, res) => {\n    res.status(404).json({\n        error: 'Route not found',\n        requested: req.path,\n        availableEndpoints: [\n            'GET /api/market/prices',\n            'GET /api/market/item/:name',\n            'GET /api/market/list?sort=price&limit=5',\n            'GET /api/market/history?itemName=Iron%20Ore',\n            'GET /api/market/stats'\n        ]\n    });\n});</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500\" target=\"_blank\">MDN: HTTP 500 Error</a> - Server error responses</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of advanced API concepts.</p>",
+            "quiz": [
+                {
+                    "question": "How do you access query parameters like `?limit=5` in Express?",
+                    "options": [
+                        "req.params.limit",
+                        "req.query.limit",
+                        "req.body.limit"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why do we limit the history array to the last 100 records?",
+                    "options": [
+                        "To prevent the server from running out of memory over time",
+                        "Because arrays can only hold 100 items",
+                        "To make the database faster"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 6b Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a professional API with multiple endpoints.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Handle query parameters</div><div class=\"achievement\">✓ Sort and filter data</div><div class=\"achievement\">✓ Store historical data</div><div class=\"achievement\">✓ Calculate statistics</div><div class=\"achievement\">✓ Handle errors properly</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 6c - Authentication & Security</p>"
         }

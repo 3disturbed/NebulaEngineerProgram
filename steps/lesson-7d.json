@@ -19,6 +19,30 @@
             "content": "<p><strong>Structure for game world:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">class Sector {\n    constructor(x, y, name) {\n        this.x = x;\n        this.y = y;\n        this.name = name;\n        this.objects = [];\n        this.routes = [];  // Connections to other sectors\n    }\n    \n    addObject(orbitalObject) {\n        this.objects.push(orbitalObject);\n    }\n    \n    // Get all objects within range\n    getObjectsInRange(centerX, centerY, radius) {\n        return this.objects.filter(obj => {\n            const pos = obj.getPosition();\n            const dist = distance(centerX, centerY, pos.x, pos.y);\n            return dist <= radius;\n        });\n    }\n    \n    // Serialize for network transmission\n    toJSON() {\n        return {\n            x: this.x,\n            y: this.y,\n            name: this.name,\n            objectCount: this.objects.length,\n            objects: this.objects.map(obj => ({\n                name: obj.name,\n                position: obj.getPosition(),\n                distance: obj.getDistanceFromCenter()\n            }))\n        };\n    }\n}\n\n// Build a 10x10 galaxy\nconst galaxy = [];\nfor (let x = 0; x < 10; x++) {\n    for (let y = 0; y < 10; y++) {\n        const sector = new Sector(x, y, `Sector (${x}, ${y})`);\n        \n        // Add random objects to each sector\n        for (let i = 0; i < Math.floor(Math.random() * 5); i++) {\n            sector.addObject(\n                new OrbitalObject(\n                    'Object ' + i,\n                    50 + Math.random() * 200,\n                    Math.random() * 0.5\n                )\n            );\n        }\n        \n        galaxy.push(sector);\n    }\n}\n\nconsole.log('Galaxy has ' + galaxy.length + ' sectors');</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter\" target=\"_blank\">MDN: Array.filter()</a> - Filter objects by criteria</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of 2D coordinate systems.</p>",
+            "quiz": [
+                {
+                    "question": "Which formula is used to calculate the straight-line distance between two points (x1, y1) and (x2, y2)?",
+                    "options": [
+                        "Manhattan Distance: |x2 - x1| + |y2 - y1|",
+                        "Euclidean Distance: Math.sqrt((x2 - x1)^2 + (y2 - y1)^2)",
+                        "Area Formula: (x2 - x1) * (y2 - y1)"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "In the orbital mechanics example, how is the object's position (x, y) calculated from its angle and radius?",
+                    "options": [
+                        "x = angle * radius, y = angle / radius",
+                        "x = Math.sin(angle), y = Math.cos(angle)",
+                        "x = Math.cos(angle) * radius, y = Math.sin(angle) * radius"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
             "title": "Lesson 7d Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You understand the game world's coordinate system.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Use 2D coordinates for locations</div><div class=\"achievement\">✓ Calculate distances between points</div><div class=\"achievement\">✓ Implement orbital mechanics</div><div class=\"achievement\">✓ Normalize direction vectors</div><div class=\"achievement\">✓ Organize sectors and objects</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7e - Galaxy Rendering</p>"
         }

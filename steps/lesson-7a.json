@@ -19,6 +19,30 @@
             "content": "<p><strong>Add text labels to your drawings:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Set text properties\nctx.font = '24px Arial';\nctx.fillStyle = '#FFFFFF';\nctx.textAlign = 'center';\nctx.textBaseline = 'middle';\n\n// Draw text at position (x, y)\nctx.fillText('Market Price', 400, 50);\n\n// Draw with outline\nctx.strokeStyle = '#000000';\nctx.lineWidth = 2;\nctx.strokeText('Iron Ore: $150', 400, 100);\n\n// Measure text width\nconst metrics = ctx.measureText('$150');\nconsole.log('Text width: ' + metrics.width);</code></div><p style=\"margin-top: 15px;\"><strong>Styling with gradients:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Create a linear gradient\nconst gradient = ctx.createLinearGradient(0, 0, 800, 0);\ngradient.addColorStop(0, '#FF0000');      // Red at left\ngradient.addColorStop(0.5, '#FFFF00');    // Yellow in middle\ngradient.addColorStop(1, '#00FF00');      // Green at right\n\nctx.fillStyle = gradient;\nctx.fillRect(0, 0, 800, 600);</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font\" target=\"_blank\">MDN: Canvas font</a> - Text styling</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of Canvas basics.</p>",
+            "quiz": [
+                {
+                    "question": "Where is the origin (0,0) located on an HTML5 Canvas?",
+                    "options": [
+                        "Center",
+                        "Bottom-Left",
+                        "Top-Left"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "question": "Which method is used to draw a filled rectangle?",
+                    "options": [
+                        "ctx.drawRect()",
+                        "ctx.fillRect()",
+                        "ctx.rectangle()"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 7a Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You understand canvas drawing fundamentals.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Create canvas elements</div><div class=\"achievement\">✓ Draw shapes and lines</div><div class=\"achievement\">✓ Use transformations</div><div class=\"achievement\">✓ Style with colors and gradients</div><div class=\"achievement\">✓ Add text labels</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7b - Building Price Charts</p>"
         }

@@ -23,6 +23,30 @@
             "content": "<p>Put it all together in a production-ready API:</p><div class=\"code-block\"><code class=\"language-javascript\">const express = require('express');\nconst cors = require('cors');\nconst app = express();\n\napp.use(express.json());\napp.use(cors());\n\n// Security headers\napp.use((req, res, next) => {\n    res.setHeader('X-Frame-Options', 'DENY');\n    res.setHeader('X-Content-Type-Options', 'nosniff');\n    next();\n});\n\nconst validApiKeys = {\n    'key-demo-12345': { name: 'Demo', limit: 100 }\n};\nconst requestCounts = {};\n\nfunction validateApiKey(req, res, next) {\n    const apiKey = req.headers['x-api-key'];\n    if (!apiKey || !validApiKeys[apiKey]) {\n        return res.status(401).json({ error: 'Invalid API key' });\n    }\n    req.client = validApiKeys[apiKey];\n    next();\n}\n\nfunction rateLimit(req, res, next) {\n    const apiKey = req.headers['x-api-key'];\n    const now = Date.now();\n    \n    if (!requestCounts[apiKey]) requestCounts[apiKey] = [];\n    requestCounts[apiKey] = requestCounts[apiKey]\n        .filter(time => now - time < 60000);\n    \n    if (requestCounts[apiKey].length >= req.client.limit) {\n        return res.status(429).json({ error: 'Rate limit exceeded' });\n    }\n    \n    requestCounts[apiKey].push(now);\n    res.set('X-RateLimit-Remaining', req.client.limit - requestCounts[apiKey].length);\n    next();\n}\n\napp.get('/api/market/prices', validateApiKey, rateLimit, (req, res) => {\n    res.json({ client: req.client.name, prices: items });\n});\n\napp.listen(3000, () => {\n    console.log('🔒 Secure API running on port 3000');\n});</code></div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of API security.</p>",
+            "quiz": [
+                {
+                    "question": "What is the purpose of rate limiting?",
+                    "options": [
+                        "To make the API slower for everyone",
+                        "To prevent abuse by limiting the number of requests a client can make in a given time",
+                        "To charge users more money"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Which HTTP header is commonly used to send an API key?",
+                    "options": [
+                        "X-API-Key",
+                        "Content-Type",
+                        "User-Agent"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 6c Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a secure, production-ready API.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Implement API key authentication</div><div class=\"achievement\">✓ Add rate limiting to prevent abuse</div><div class=\"achievement\">✓ Configure CORS for cross-origin requests</div><div class=\"achievement\">✓ Set security headers</div><div class=\"achievement\">✓ Log requests for monitoring</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 6d - WebSockets & Real-Time Updates</p>"
         }

@@ -15,6 +15,30 @@
             "content": "<p>A full market update combines both analyzer and calculator:</p><div class=\"code-block\"><code class=\"language-javascript\">// Market state\nconst marketItems = [\n    { name: 'Iron Ore', price: 100, supply: 50, demand: 80 },\n    { name: 'Copper Ore', price: 75, supply: 60, demand: 60 },\n    { name: 'Uranium Ore', price: 500, supply: 20, demand: 2 }\n];\n\nconst analyzer = new MarketAnalyzer();\nconst calculator = new PriceCalculator();\n\n// One complete market tick\nfunction updateMarket() {\n    // Step 1: Analyze current demand\n    analyzer.analyzePrices(marketItems);\n    \n    // Step 2: Calculate new prices\n    calculator.adjustPrices(marketItems, analyzer);\n    \n    // Step 3: Display results\n    console.log('Market Update:');\n    marketItems.forEach(item => {\n        const ratio = analyzer.getDemandRatio(item.name);\n        console.log(`${item.name}: $${item.price.toFixed(2)} (demand: ${(ratio*100).toFixed(0)}%)`);\n    });\n}\n\n// Run the update\nupdateMarket();</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach\" target=\"_blank\">MDN: Array.forEach()</a> - Execute code for each item</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the PriceCalculator class.</p>",
+            "quiz": [
+                {
+                    "question": "What is the purpose of the `adjustPrices` method?",
+                    "options": [
+                        "To calculate the price for a single item",
+                        "To update the prices of all items in the list at once based on their demand",
+                        "To reset all prices to zero"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "In the `updateMarket` function, what is the correct order of operations?",
+                    "options": [
+                        "Calculate Prices -> Analyze Demand -> Display Results",
+                        "Display Results -> Calculate Prices -> Analyze Demand",
+                        "Analyze Demand -> Calculate Prices -> Display Results"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
             "title": "Lesson 4b Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a working price calculator.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Understand the PriceCalculator class</div><div class=\"achievement\">✓ Can combine analyzer and calculator</div><div class=\"achievement\">✓ Can execute complete market ticks</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 5a - The Main Service Loop</p>"
         }

@@ -23,6 +23,30 @@
             "content": "<p>Create <strong>test-config.js</strong> in the root:</p><div class=\"code-block\"><code class=\"language-javascript\">// test-config.js\n// ================\n// Test market configuration loading and values\n\nconst config = require('./src/config/market.config');\n\nconsole.log('=== Market Configuration Test ===\\n');\n\n// Test 1: Check update interval\nconst minutesPerUpdate = config.updateIntervalSeconds / 60;\nconsole.log('Update interval:', config.updateIntervalSeconds, 'seconds');\nconsole.log('              = ', minutesPerUpdate, 'minutes per update');\n\n// Test 2: Check Federation markups\nconsole.log('\\nFederation Pricing:');\nconsole.log('  Buy markup: ', config.federationBuyMarkup, '(players get 10% of value)');\nconsole.log('  Sell markup:', config.federationSellMarkup, '(NPCs charge 10x markup)');\n\n// Test 3: Check price limits\nconsole.log('\\nPrice Limits:');\nconsole.log('  Max increase: ', (config.maxPriceIncreasePerHour * 100) + '%');\nconsole.log('  Max decrease: ', (config.maxPriceDecreasePerHour * 100) + '%');\n\n// Test 4: Check supply/demand thresholds\nconsole.log('\\nSupply/Demand Thresholds:');\nconsole.log('  High demand: ', config.highDemandThreshold, 'trades');\nconsole.log('  Low supply: ', config.lowSupplyThreshold, 'units');\nconsole.log('  High supply:', config.highSupplyThreshold, 'units');\n\n// Test 5: Check base prices\nconsole.log('\\nBase Prices:');\nObject.entries(config.basePrices).forEach(([key, price]) => {\n  const name = config.commodityNames[key];\n  console.log('  ' + name + ':', price, 'credits');\n});\n\nconsole.log('\\nConfiguration loaded successfully!');</code></div><div class=\"read-more\" style=\"margin-top: 15px; font-size: 0.9em;\"><strong>Read more on MDN:</strong><ul style=\"margin-top: 5px;\"><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries\" target=\"_blank\">Object.entries()</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach\" target=\"_blank\">Array.prototype.forEach()</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/console/log\" target=\"_blank\">console.log()</a></li></ul></div><p style=\"margin-top: 15px;\">Run it:</p><div class=\"command\">node test-config.js</div><button class=\"btn btn-lab\" id=\"labBtn-1d-0\" onclick=\"openLab('labBtn-1d-0')\">🧪 Try the Config Lab</button>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of market configuration.</p>",
+            "quiz": [
+                {
+                    "question": "Why do we use configuration files?",
+                    "options": [
+                        "To make the code look prettier",
+                        "To centralize 'magic numbers' in one place",
+                        "To hide secrets from players"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why does the Federation have unfair prices?",
+                    "options": [
+                        "Because the developers are mean",
+                        "To encourage player-to-player trading",
+                        "To make the game impossible"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 1 Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've completed the ENTIRE foundation!</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Project Setup</div><div class=\"achievement\">✓ TimeService (HSL)</div><div class=\"achievement\">✓ Logger Utility</div><div class=\"achievement\">✓ Market Config</div></div><p style=\"margin-top: 20px;\"><strong>What you've learned:</strong></p><ul style=\"margin: 10px 0 10px 20px;\"><li>Microservice architecture</li><li>Game time systems (HSL)</li><li>Structured logging</li><li>Configuration management</li></ul><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 2 - Database Wrapper</p>"
         }

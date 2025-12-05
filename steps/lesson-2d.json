@@ -15,6 +15,30 @@
             "content": "<p>Look in your <code>data/</code> folder with Windows Explorer or VS Code:</p><div class=\"code-block\"><code class=\"language-text\">c:\\Game Concept\\data\\\n├── markets.json\n└── players.json</code></div><p style=\"margin-top: 15px;\">Open <code>markets.json</code> in VS Code to see your saved data (pretty-printed!):</p><div class=\"code-block\"><code class=\"language-json\">{\n  \"commodities\": [\n    {\n      \"name\": \"iron_ore\",\n      \"price\": 100,\n      \"supply\": 5000\n    },\n    {\n      \"name\": \"copper_ore\",\n      \"price\": 75,\n      \"supply\": 3000\n    },\n    {\n      \"name\": \"uranium_ore\",\n      \"price\": 500,\n      \"supply\": 100\n    }\n  ]\n}</code></div><p style=\"margin-top: 15px;\"><strong>This is why JSON files are great for prototyping:</strong> You can actually READ and UNDERSTAND your data!</p>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of testing the database.</p>",
+            "quiz": [
+                {
+                    "question": "Why do we test reading a non-existent file?",
+                    "options": [
+                        "To make the program crash",
+                        "To ensure our code handles missing data gracefully (returns null) instead of crashing",
+                        "To create the file automatically"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "What is a major benefit of using JSON files for data storage during development?",
+                    "options": [
+                        "They are encrypted",
+                        "They are faster than any database",
+                        "They are human-readable and easy to debug"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
             "title": "Lesson 2 Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've mastered data persistence with safe, atomic file operations.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Built Database wrapper class</div><div class=\"achievement\">✓ Tested save and load operations</div><div class=\"achievement\">✓ Verified data integrity</div><div class=\"achievement\">✓ Handled edge cases</div></div><p style=\"margin-top: 20px;\"><strong>You can now:</strong></p><ul style=\"margin: 10px 0 10px 20px;\"><li>Save game state safely</li><li>Load data without corruption</li><li>Handle missing files gracefully</li><li>Debug your data in VS Code</li></ul><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 3 - Market Analyzer</p>"
         }

@@ -19,6 +19,30 @@
             "content": "<p><strong>Prevents wild swings:</strong> The 10% cap means even extreme demand only changes price by 10%</p><p style=\"margin-top: 10px;\"><strong>Proportional to current price:</strong> $100 item changes by $10, $500 item changes by $50 (fair!)</p><p style=\"margin-top: 10px;\"><strong>Smooth transitions:</strong> Price gradually moves as demand changes, not in jumps</p><p style=\"margin-top: 10px;\"><strong>Neutral at 0.5:</strong> When demand is balanced, price doesn't move</p>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the price formula.</p>",
+            "quiz": [
+                {
+                    "question": "What happens to the price if the demand ratio is exactly 0.5?",
+                    "options": [
+                        "It increases by 50%",
+                        "It decreases by 50%",
+                        "It stays exactly the same"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "question": "Why do we multiply by `maxChangePercent`?",
+                    "options": [
+                        "To prevent the price from changing too drastically in a single update",
+                        "To make the price change faster",
+                        "To convert the price to a percentage"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 4a Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You understand the price adjustment formula.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Know the formula components</div><div class=\"achievement\">✓ Can calculate adjustments</div><div class=\"achievement\">✓ Understand why it works</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 4b - Building the Price Calculator</p>"
         }

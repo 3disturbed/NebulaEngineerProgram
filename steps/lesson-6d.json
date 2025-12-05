@@ -23,6 +23,30 @@
             "content": "<p>WebSockets aren't just for broadcasting - clients can request specific data:</p><div class=\"code-block\"><code class=\"language-javascript\">// Server: Listen for client requests\nio.on('connection', (socket) => {\n    // Client asks for history\n    socket.on('request:history', (data) => {\n        const itemName = data.itemName;\n        \n        // Send only relevant history\n        const history = priceHistory.filter(h => \n            h.items.some(i => i.name === itemName)\n        );\n        \n        // Send back to that specific client\n        socket.emit('response:history', {\n            itemName: itemName,\n            history: history.slice(-20) // Last 20 records\n        });\n    });\n});\n\n// Client: Request specific data\nsocket.emit('request:history', { itemName: 'Iron Ore' });\n\n// Client: Receive the response\nsocket.on('response:history', (data) => {\n    console.log(`Price history for ${data.itemName}:`);\n    data.history.forEach(record => {\n        console.log(`${record.timestamp}: $${record.price}`);\n    });\n});</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/EventEmitter\" target=\"_blank\">MDN: Event-driven architecture</a> - Request-response pattern</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of WebSockets.</p>",
+            "quiz": [
+                {
+                    "question": "What is the main advantage of WebSockets over REST for a real-time game?",
+                    "options": [
+                        "WebSockets are easier to code",
+                        "WebSockets allow the server to push updates to the client instantly without the client asking",
+                        "WebSockets use less internet data"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Which method sends a message to ALL connected clients?",
+                    "options": [
+                        "socket.emit()",
+                        "io.emit()",
+                        "server.send()"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 6d Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a real-time market system.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Understand WebSocket advantages</div><div class=\"achievement\">✓ Set up Socket.IO server</div><div class=\"achievement\">✓ Broadcast updates to all clients</div><div class=\"achievement\">✓ Connect clients and receive live data</div><div class=\"achievement\">✓ Handle client requests via WebSocket</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 6e - Deployment & Production</p>"
         }

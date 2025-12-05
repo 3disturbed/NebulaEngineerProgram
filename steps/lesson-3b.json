@@ -15,6 +15,30 @@
             "content": "<p><strong>Example usage:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">const analyzer = require('./src/services/MarketAnalyzer');\n\n// Get trades from your database\nconst trades = [\n    { type: 'buy', amount: 500 },\n    { type: 'sell', amount: 100 },\n    { type: 'buy', amount: 300 },\n    { type: 'sell', amount: 200 }\n];\n\n// Calculate demand\nconst demandRatio = analyzer.analyze(trades);\nconsole.log('Demand Ratio:', demandRatio);  // 0.625\n\n// Interpret the result\nif (demandRatio > 0.7) {\n    console.log('HIGH DEMAND - Price should go up!');\n} else if (demandRatio < 0.3) {\n    console.log('PANIC SELLING - Price should go down!');\n} else {\n    console.log('Balanced market - Price stable');\n}</code></div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the MarketAnalyzer class.</p>",
+            "quiz": [
+                {
+                    "question": "What does the `analyze` method return if there are no trades?",
+                    "options": [
+                        "0.0 (Crash)",
+                        "0.5 (Neutral/Balanced)",
+                        "1.0 (Moon)"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why do we sum up the volumes instead of just counting the number of trades?",
+                    "options": [
+                        "Because a single large trade (1000 units) matters more than many small trades (1 unit)",
+                        "Because it's easier to code",
+                        "Because the database requires it"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 3b Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a market analyzer that reads trading data.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Created MarketAnalyzer class</div><div class=\"achievement\">✓ Implemented demand ratio calculation</div><div class=\"achievement\">✓ Know how to use it in your code</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 4 - Price Calculator</p>"
         }

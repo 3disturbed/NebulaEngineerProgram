@@ -17,6 +17,34 @@
         {
             "title": "Verify Your Setup",
             "content": "<p>Check that everything is in place:</p><div class=\"command\">dir src /s</div><p style=\"margin-top: 15px; color: #666;\">You should see all your folders listed.</p><div class=\"hint\">If folders don't appear, check that you're in the right directory (c:\\Game Concept)</div>"
+        },
+        {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding before moving on.</p>",
+            "quiz": [
+                {
+                    "question": "What is the purpose of the 'src' folder?",
+                    "options": [
+                        "To store database files",
+                        "To store documentation",
+                        "To store the source code"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "question": "Which file contains project metadata?",
+                    "options": [
+                        "index.js",
+                        "package.json",
+                        "readme.md"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
+            "title": "Lesson 1a Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You have successfully set up the project foundation.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Created folder structure</div><div class=\"achievement\">✓ Initialized package.json</div><div class=\"achievement\">✓ Verified environment</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 1b - TimeService</p>"
         }
     ]
 }

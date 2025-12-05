@@ -23,6 +23,30 @@
             "content": "<p><strong>Before deploying to production:</strong></p><div class=\"hint\"><strong>✓ Code Quality</strong><br>• All tests passing<br>• No console.log() statements (use logger)<br>• Proper error handling everywhere<br>• Code reviewed by another developer<br><br><strong>✓ Security</strong><br>• API keys are environment variables<br>• Database is secured<br>• HTTPS enabled<br>• Rate limiting configured<br>• CORS set to specific origins<br><br><strong>✓ Monitoring</strong><br>• Logging configured<br>• Health check endpoint working<br>• Alert system set up<br>• Metrics collection ready<br><br><strong>✓ Performance</strong><br>• Load tested<br>• Database optimized<br>• Caching implemented<br>• CDN configured<br><br><strong>✓ Operations</strong><br>• Deployment script ready<br>• Rollback plan documented<br>• Backup strategy in place<br>• Runbooks written</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of deployment concepts.</p>",
+            "quiz": [
+                {
+                    "question": "Why do we use environment variables (like in a .env file)?",
+                    "options": [
+                        "To make the code run faster",
+                        "To keep sensitive configuration (like API keys and database passwords) out of the code",
+                        "To make the file size smaller"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "What is the purpose of a 'health check' endpoint?",
+                    "options": [
+                        "To check if the server is running and healthy",
+                        "To scan for viruses",
+                        "To check the health of the player in the game"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 6e Complete! 🎉",
             "content": "<p style=\"font-size: 1.2em; font-weight: bold;\">You've built a production-ready microservice!</p><div style=\"margin: 20px 0; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;\"><h3 style=\"margin: 0 0 10px 0;\">✨ What You Accomplished in Lesson 6:</h3><ul style=\"margin: 10px 0 10px 20px; color: white;\"><li>6a: Built REST API with Express.js</li><li>6b: Added advanced endpoints & filtering</li><li>6c: Implemented authentication & security</li><li>6d: Added real-time WebSocket updates</li><li>6e: Deployed and maintained production systems</li></ul></div><p style=\"margin-top: 20px;\"><strong>You can now:</strong></p><ul style=\"margin: 10px 0 10px 20px;\"><li>✅ Build scalable microservices</li><li>✅ Secure APIs with authentication</li><li>✅ Handle real-time data with WebSockets</li><li>✅ Deploy to production safely</li><li>✅ Monitor and maintain services</li><li>✅ Build professional Node.js applications</li></ul><div style=\"margin-top: 25px; padding: 15px; background: #2a2e47; border-left: 4px solid #f9e2af; border-radius: 8px;\"><p style=\"margin: 0;\"><strong>🚀 Your Journey Continues!</strong> You've learned the fundamentals of microservice architecture. Next steps: explore databases (MongoDB, PostgreSQL), containerization (Docker Compose), and orchestration (Kubernetes).</p></div>"
         }

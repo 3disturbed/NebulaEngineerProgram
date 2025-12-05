@@ -16,7 +16,36 @@
         },
         {
             "title": "Test Results",
-            "content": "<p><strong>Without DEBUG:</strong></p><div class=\"code-block\"><code class=\"language-text\">[2025-12-05T15:30:42.123Z] [INFO] Market service starting...\n[2025-12-05T15:30:42.124Z] [WARN] Low supply detected!\n[2025-12-05T15:30:42.125Z] [ERROR] Failed to read file\n   { file: 'markets.json' }</code></div><p style=\"margin-top: 15px;\"><strong>With DEBUG:</strong></p><div class=\"code-block\"><code class=\"language-text\">[2025-12-05T15:30:42.123Z] [INFO] Market service starting...\n[2025-12-05T15:30:42.124Z] [WARN] Low supply detected!\n[2025-12-05T15:30:42.125Z] [ERROR] Failed to read file\n   { file: 'markets.json' }\n[2025-12-05T15:30:42.126Z] [DEBUG] This only shows with DEBUG=true</code></div><p style=\"margin-top: 20px;\"><strong>🎉 You control what gets logged!</strong></p><div class=\"achievement\">✓ Professional Logging System</div>"
+            "content": "<p><strong>Without DEBUG:</strong></p><div class=\"code-block\"><code class=\"language-text\">[2025-12-05T15:30:42.123Z] [INFO] Market service starting...\n[2025-12-05T15:30:42.124Z] [WARN] Low supply detected!\n[2025-12-05T15:30:42.125Z] [ERROR] Failed to read file\n   { file: 'markets.json' }</code></div><p style=\"margin-top: 15px;\"><strong>With DEBUG:</strong></p><div class=\"code-block\"><code class=\"language-text\">[2025-12-05T15:30:42.123Z] [INFO] Market service starting...\n[2025-12-05T15:30:42.124Z] [WARN] Low supply detected!\n[2025-12-05T15:30:42.125Z] [ERROR] Failed to read file\n   { file: 'markets.json' }\n[2025-12-05T15:30:42.126Z] [DEBUG] This only shows with DEBUG=true</code></div>"
+        },
+        {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of logging.</p>",
+            "quiz": [
+                {
+                    "question": "Which log level should be used for normal operations?",
+                    "options": [
+                        "DEBUG",
+                        "INFO",
+                        "WARN",
+                        "ERROR"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "When should you enable DEBUG logs?",
+                    "options": [
+                        "Always in production",
+                        "Only during development",
+                        "Never"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
+            "title": "Lesson 1c Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You have successfully built the Logger Utility.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Implemented structured logging</div><div class=\"achievement\">✓ Added log levels</div><div class=\"achievement\">✓ Created debug mode</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 1d - Market Configuration</p>"
         }
     ]
 }

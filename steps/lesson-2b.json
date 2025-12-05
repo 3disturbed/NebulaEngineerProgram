@@ -19,6 +19,30 @@
             "content": "<p><strong>Scenario 1: Crash while writing to .tmp</strong></p><p>Result: <code>markets.json.tmp</code> is corrupted, but <code>markets.json</code> is untouched ✓<br>Solution: Delete the .tmp and try again</p><p style=\"margin-top: 15px;\"><strong>Scenario 2: Crash during rename</strong></p><p>Result: OS guarantees the rename completes or fails entirely ✓<br>Solution: Most OS support atomic renames (Windows, Linux, Mac)</p><p style=\"margin-top: 15px;\"><strong>Scenario 3: Everything succeeds</strong></p><p>Result: <code>markets.json</code> now contains perfect new data ✓<br>Old data is completely replaced</p>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the Safe Write Pattern.</p>",
+            "quiz": [
+                {
+                    "question": "What is the correct order of operations for a safe write?",
+                    "options": [
+                        "Delete old file -> Write new file",
+                        "Write to temp file -> Rename temp file to real file",
+                        "Rename old file -> Write new file"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why is the 'rename' operation so important?",
+                    "options": [
+                        "It is faster than writing",
+                        "It is atomic (happens instantly and completely)",
+                        "It compresses the file"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 2b Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You know the pattern that prevents data corruption.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Understand the Safe Write Pattern</div><div class=\"achievement\">✓ Know why rename is atomic</div><div class=\"achievement\">✓ Can handle all failure scenarios</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 2c - Building the Database Class</p>"
         }

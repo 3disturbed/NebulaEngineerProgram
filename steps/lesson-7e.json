@@ -19,6 +19,30 @@
             "content": "<p><strong>Let players navigate the galaxy:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">class GalaxyRenderer {\n    // ... previous code ...\n    \n    setupControls() {\n        const panSpeed = 0.1;\n        \n        window.addEventListener('keydown', (e) => {\n            switch(e.key) {\n                case 'ArrowUp':\n                case 'w': this.cameraY -= panSpeed; break;\n                case 'ArrowDown':\n                case 's': this.cameraY += panSpeed; break;\n                case 'ArrowLeft':\n                case 'a': this.cameraX -= panSpeed; break;\n                case 'ArrowRight':\n                case 'd': this.cameraX += panSpeed; break;\n                case '+': this.zoom *= 1.1; break;\n                case '-': this.zoom /= 1.1; break;\n            }\n        });\n        \n        // Mouse wheel zoom\n        this.canvas.addEventListener('wheel', (e) => {\n            e.preventDefault();\n            this.zoom *= (e.deltaY > 0 ? 0.9 : 1.1);\n        });\n        \n        // Click on sector\n        this.canvas.addEventListener('click', (e) => {\n            const rect = this.canvas.getBoundingClientRect();\n            const screenX = e.clientX - rect.left;\n            const screenY = e.clientY - rect.top;\n            \n            // Convert to world coordinates\n            const worldX = (screenX - this.canvas.width / 2) / this.zoom + this.cameraX;\n            const worldY = (screenY - this.canvas.height / 2) / this.zoom + this.cameraY;\n            \n            const sectorX = Math.floor(worldX);\n            const sectorY = Math.floor(worldY);\n            \n            console.log(`Clicked sector: (${sectorX}, ${sectorY})`);\n        });\n    }\n}\n\n// Initialize\nconst renderer = new GalaxyRenderer('galaxyCanvas');\nrenderer.setupControls();</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event\" target=\"_blank\">MDN: wheel Event</a> - Mouse wheel scrolling</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of galaxy rendering.</p>",
+            "quiz": [
+                {
+                    "question": "What is the purpose of the `worldToScreen` function in the renderer?",
+                    "options": [
+                        "To convert 3D coordinates to 2D",
+                        "To translate game world coordinates (sectors) into pixel coordinates on the canvas",
+                        "To calculate the distance between stars"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why is `requestAnimationFrame` used instead of `setInterval` for the animation loop?",
+                    "options": [
+                        "It is easier to spell",
+                        "It guarantees exactly 100 frames per second",
+                        "It provides smoother animation optimized by the browser (usually 60fps) and pauses when the tab is inactive"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
             "title": "Lesson 7e Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've rendered an interactive galaxy map.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Draw sectors and star fields</div><div class=\"achievement\">✓ Render orbiting objects</div><div class=\"achievement\">✓ Implement camera controls</div><div class=\"achievement\">✓ Add zoom and panning</div><div class=\"achievement\">✓ Show orbital mechanics in real-time</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7f - Navigation Dashboard</p>"
         }

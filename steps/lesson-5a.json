@@ -15,6 +15,30 @@
             "content": "<p><strong>Every 5 seconds:</strong></p><div class=\"hint\"><strong>Step 1 - Analyze:</strong><br>Calculate supply-to-demand ratios<br><code>analyzer.analyzePrices(items)</code><br><br><strong>Step 2 - Calculate:</strong><br>Adjust each price based on demand<br><code>calculator.adjustPrices(items, analyzer)</code><br><br><strong>Step 3 - Save:</strong><br>Store the complete market state<br><code>database.write('market-' + timestamp, marketState)</code><br><br><strong>Step 4 - Display:</strong><br>Print the results for monitoring</div><p style=\"margin-top: 15px;\"><strong>Error Handling:</strong></p><p>The try-catch ensures if one update fails, the service keeps running</p>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the main service loop.</p>",
+            "quiz": [
+                {
+                    "question": "What function do we use to run the market update repeatedly?",
+                    "options": [
+                        "setTimeout()",
+                        "setInterval()",
+                        "runForever()"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why do we wrap the update logic in a `try...catch` block?",
+                    "options": [
+                        "To make the code run faster",
+                        "To ensure that if one update fails (e.g., database error), the service doesn't crash and keeps running",
+                        "To hide errors from the user"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 5a Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You understand the complete market service loop.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ All components working together</div><div class=\"achievement\">✓ Understand the main loop structure</div><div class=\"achievement\">✓ See how data flows through the system</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 5b - Creating market-service.js</p>"
         }

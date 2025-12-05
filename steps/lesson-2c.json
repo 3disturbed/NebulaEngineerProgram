@@ -19,6 +19,30 @@
             "content": "<p><strong>In your microservice code:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">const db = require('./src/database');\n\n// Save some data\nconst marketData = {\n    iron_ore: 100,\n    copper_ore: 75\n};\nawait db.saveFile('markets.json', marketData);\n\n// Load it back\nconst loaded = await db.readFile('markets.json');\nconsole.log(loaded);  // { iron_ore: 100, copper_ore: 75 }</code></div><div class=\"read-more\" style=\"margin-top: 15px; font-size: 0.9em;\"><strong>Read more on MDN:</strong><ul style=\"margin-top: 5px;\"><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function\" target=\"_blank\">async/await</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await\" target=\"_blank\">await operator</a></li></ul></div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the Database class implementation.</p>",
+            "quiz": [
+                {
+                    "question": "Why do we use `path.join()` instead of just adding strings together?",
+                    "options": [
+                        "It makes the code run faster",
+                        "It handles different operating system path separators (\\ vs /) automatically",
+                        "It encrypts the file path"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "What does `JSON.stringify(data, null, 2)` do?",
+                    "options": [
+                        "Converts data to a string with 2-space indentation (pretty print)",
+                        "Converts data to a string and encrypts it twice",
+                        "Converts data to a string and removes null values"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 2c Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a safe, reusable database wrapper.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Created Database class</div><div class=\"achievement\">✓ Implemented Safe Write Pattern</div><div class=\"achievement\">✓ Handle file errors gracefully</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 2d - Testing the Database</p>"
         }

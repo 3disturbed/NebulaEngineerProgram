@@ -6,13 +6,18 @@
     <title>Nebula Engineer Program - Interactive Lessons</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 </head>
 <body>
+    <!-- Menu Toggle -->
+    <button id="menuToggle" class="menu-toggle">☰</button>
+
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
+        <button id="menuClose" class="menu-close">&times;</button>
         <div class="brand">
-            <span>🚀 Nebula Engineer Program</span>
+            <span>🚀 Nebula Engineer</span>
         </div>
         
         <div class="user-profile-display" id="userProfileDisplay" style="display:none;">

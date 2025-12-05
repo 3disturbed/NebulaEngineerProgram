@@ -1,0 +1,123 @@
+/* Menu Toggle */
+.menu-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Hidden by default (Desktop) */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.menu-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 2rem;
+    cursor: pointer;
+    display: none; /* Shown on mobile/when sidebar is modal */
+}
+
+/* Sidebar Modal Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Show on mobile */
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Hidden by default */
+        width: 85%;
+        max-width: 300px;
+        height: 100%;
+        z-index: 1001;
+        transition: left 0.3s ease;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .menu-close {
+        display: block;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Accordion Styles */
+.lesson-steps {
+    list-style: none;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 2px solid var(--border-color);
+    display: none; /* Hidden by default */
+}
+
+.lesson-item.expanded .lesson-steps {
+    display: block;
+}
+
+.step-item {
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #a6adc8;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.step-item:not(.disabled):hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+}
+
+.step-item.active {
+    background-color: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.step-item.completed-step {
+    color: var(--success-color);
+}
+
+.step-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.step-tick {
+    font-size: 0.8em;
+    opacity: 0;
+}
+
+.step-item.completed-step .step-tick {
+    opacity: 1;
+}
+
+/* Disabled Lesson */
+.lesson-item.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    filter: grayscale(1);
+}

@@ -4,6 +4,8 @@ let users = {}; // { "username": { score: 0, completedSteps: [], completedLesson
 let currentUser = null; // "username"
 let currentLesson = null;
 let currentStepIndex = 0;
+let currentQuizPassed = false;
+let lessonCache = {}; // Cache for lesson details (steps)
 
 // Constants
 const POINTS_PER_STEP = 10;
@@ -23,6 +25,11 @@ const labTitle = document.getElementById('labTitle');
 const stepTick = document.getElementById('stepTick');
 const sectionProgressBar = document.getElementById('sectionProgressBar');
 const overallProgressBar = document.getElementById('overallProgressBar');
+
+// Menu Elements
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
+const sidebar = document.getElementById('sidebar');
 
 // User Profile Elements
 const welcomeModal = document.getElementById('welcomeModal');
@@ -264,21 +271,47 @@ function updateOverallProgress() {
 function renderSidebar() {
     lessonList.innerHTML = '';
     const completedLessons = getCompletedLessons();
-    const completedSteps = getCompletedSteps();
+    
+    // Find current lesson index
+    let currentIndex = 0;
+    if (currentLesson) {
+        currentIndex = lessons.findIndex(l => l.id === currentLesson.id);
+    } else {
+        // If no current lesson loaded yet, find first incomplete
+        currentIndex = lessons.findIndex(l => !completedLessons.has(l.id));
+        if (currentIndex === -1) currentIndex = lessons.length - 1; // All done
+    }
 
-    lessons.forEach(lesson => {
+    lessons.forEach((lesson, index) => {
+        // Filter logic: Show Completed, Current, and Next (Disabled)
+        if (index > currentIndex + 1) return;
+
         const li = document.createElement('li');
         li.className = 'lesson-item';
         li.dataset.id = lesson.id;
         
         const isCompleted = completedLessons.has(lesson.id);
+        const isCurrent = index === currentIndex;
+        const isNext = index === currentIndex + 1;
+        
+        if (isNext) {
+            // Only disable if the current lesson is NOT complete
+            if (!completedLessons.has(lessons[currentIndex].id)) {
+                li.classList.add('disabled');
+            }
+        }
+        if (isCurrent) {
+            li.classList.add('active');
+            li.classList.add('expanded'); // Auto-expand current
+        }
+
         const tick = isCompleted ? '<span class="tick-icon completed" style="font-size: 1em;">✔</span>' : '';
         
+        // Progress bar for the lesson tile
         let progressPercent = isCompleted ? 100 : 0;
-        
-        // If it's the current lesson, we know the step count
-        if (currentLesson && currentLesson.id === lesson.id) {
+        if (isCurrent && currentLesson) {
              let completedCount = 0;
+             const completedSteps = getCompletedSteps();
             for (let i = 0; i < currentLesson.steps.length; i++) {
                 if (completedSteps.has(`${currentLesson.id}-${i}`)) {
                     completedCount++;
@@ -288,20 +321,132 @@ function renderSidebar() {
         }
 
         li.innerHTML = `
-            <div style="flex: 1;">
-                <div class="lesson-title">${lesson.title}</div>
-                <div class="lesson-meta">
-                    <span>${lesson.duration}</span>
-                    <span>${lesson.difficulty}</span>
-                </div>
-                <div class="lesson-progress-track">
-                    <div class="lesson-progress-fill" style="width: ${progressPercent}%"></div>
+            <div class="lesson-header" onclick="toggleLessonAccordion('${lesson.id}')">
+                <div style="flex: 1;">
+                    <div class="lesson-title">${tick} ${lesson.title}</div>
+                    <div class="lesson-meta">
+                        <span>${lesson.duration}</span>
+                        <span>${lesson.difficulty}</span>
+                    </div>
+                    <div class="lesson-progress-track">
+                        <div class="lesson-progress-fill" style="width: ${progressPercent}%"></div>
+                    </div>
                 </div>
             </div>
-            ${tick}
+            <ul class="lesson-steps" id="steps-${lesson.id}">
+                <!-- Steps loaded on demand -->
+            </ul>
         `;
-        li.onclick = () => loadLesson(lesson.id);
+        
         lessonList.appendChild(li);
+
+        // If current or expanded, load steps immediately
+        if (isCurrent && currentLesson) {
+            renderLessonSteps(lesson.id, currentLesson.steps);
+        }
+    });
+}
+
+async function toggleLessonAccordion(lessonId) {
+    const li = document.querySelector(`.lesson-item[data-id="${lessonId}"]`);
+    if (!li || li.classList.contains('disabled')) return;
+
+    const wasExpanded = li.classList.contains('expanded');
+    
+    if (wasExpanded) {
+        li.classList.remove('expanded');
+    } else {
+        li.classList.add('expanded');
+        
+        // Load steps if not present
+        const stepsContainer = document.getElementById(`steps-${lessonId}`);
+        if (stepsContainer.children.length === 0) {
+            stepsContainer.innerHTML = '<li class="step-item">Loading steps...</li>';
+            
+            // Check cache or fetch
+            let steps = [];
+            if (currentLesson && currentLesson.id === lessonId) {
+                steps = currentLesson.steps;
+            } else if (lessonCache[lessonId]) {
+                steps = lessonCache[lessonId];
+            } else {
+                // Fetch
+                const lessonMeta = lessons.find(l => l.id === lessonId);
+                if (lessonMeta) {
+                    try {
+                        const res = await fetch(`steps/${lessonMeta.file}`);
+                        const data = await res.json();
+                        steps = data.steps;
+                        lessonCache[lessonId] = steps;
+                    } catch (e) {
+                        stepsContainer.innerHTML = '<li class="step-item error">Failed to load steps</li>';
+                        return;
+                    }
+                }
+            }
+            renderLessonSteps(lessonId, steps);
+        }
+    }
+}
+
+function renderLessonSteps(lessonId, steps) {
+    const container = document.getElementById(`steps-${lessonId}`);
+    if (!container) return;
+    
+    container.innerHTML = '';
+    const completedSteps = getCompletedSteps();
+    const isCurrentLesson = currentLesson && currentLesson.id === lessonId;
+    const isCompletedLesson = getCompletedLessons().has(lessonId);
+
+    steps.forEach((step, index) => {
+        const stepKey = `${lessonId}-${index}`;
+        const isStepCompleted = completedSteps.has(stepKey);
+        
+        const li = document.createElement('li');
+        li.className = 'step-item';
+        if (isStepCompleted) li.classList.add('completed-step');
+        
+        // Clickable logic
+        let clickable = false;
+        if (isCompletedLesson) {
+            clickable = true;
+        } else if (isCurrentLesson) {
+            // Clickable if previous step is completed (or it's step 0)
+            const prevStepKey = `${lessonId}-${index - 1}`;
+            const prevCompleted = index === 0 || completedSteps.has(prevStepKey);
+            
+            if (isStepCompleted || prevCompleted) {
+                clickable = true;
+            }
+        }
+
+        if (!clickable) {
+            li.classList.add('disabled');
+        }
+
+        if (isCurrentLesson && index === currentStepIndex) {
+            li.classList.add('active');
+        }
+
+        li.innerHTML = `
+            <span>${index + 1}. ${step.title}</span>
+            <span class="step-tick">✔</span>
+        `;
+        
+        if (clickable) {
+            li.onclick = (e) => {
+                e.stopPropagation(); // Prevent accordion toggle
+                if (isCurrentLesson) {
+                    loadStep(index);
+                    if (window.innerWidth <= 768) sidebar.classList.remove('open');
+                } else {
+                    loadLesson(lessonId, index);
+                    if (window.innerWidth <= 768) sidebar.classList.remove('open');
+                }
+            };
+        }
+        
+        container.appendChild(li);
     });
 }
 
@@ -341,6 +486,18 @@ function renderStep() {
     stepCounter.textContent = `Step ${currentStepIndex + 1} of ${currentLesson.steps.length}`;
     stepContent.innerHTML = step.content;
 
+    // Quiz Rendering
+    currentQuizPassed = false;
+    if (step.quiz) {
+        renderQuiz(step.quiz);
+        // Check if already completed
+        const key = `${currentLesson.id}-${currentStepIndex}`;
+        if (getCompletedSteps().has(key)) {
+            currentQuizPassed = true;
+            showQuizSuccess(true); // Show passed state without alert
+        }
+    }
+
     // Update Tick
     const key = `${currentLesson.id}-${currentStepIndex}`;
     const completedSteps = getCompletedSteps();
@@ -362,9 +519,24 @@ function renderStep() {
 }
 
 // Navigation
+function loadStep(index) {
+    if (!currentLesson || index < 0 || index >= currentLesson.steps.length) return;
+    currentStepIndex = index;
+    renderStep();
+    savePosition(currentLesson.id, currentStepIndex);
+    renderSidebar();
+}
+
 function nextStep() {
     if (!currentLesson) return;
     
+    // Quiz Check
+    const step = currentLesson.steps[currentStepIndex];
+    if (step.quiz && !currentQuizPassed) {
+        alert("Please complete the quiz correctly to continue!");
+        return;
+    }
+
     // Auto-complete current step when moving next
     const key = `${currentLesson.id}-${currentStepIndex}`;
     const completedSteps = getCompletedSteps();
@@ -377,6 +549,7 @@ function nextStep() {
         currentStepIndex++;
         renderStep();
         savePosition(currentLesson.id, currentStepIndex);
+        renderSidebar();
     } else {
         // Lesson Complete
         checkLessonCompletion();
@@ -384,6 +557,13 @@ function nextStep() {
         renderSidebar();
         updateOverallProgress();
         alert(`Lesson Complete! 🎉 +${POINTS_PER_LESSON} XP`);
+
+        // Navigate to next lesson
+        const currentIndex = lessons.findIndex(l => l.id === currentLesson.id);
+        if (currentIndex !== -1 && currentIndex < lessons.length - 1) {
+            const nextLesson = lessons[currentIndex + 1];
+            loadLesson(nextLesson.id, 0);
+        }
     }
 }
 
@@ -392,7 +572,96 @@ function prevStep() {
         currentStepIndex--;
         renderStep();
         savePosition(currentLesson.id, currentStepIndex);
+        renderSidebar();
     }
+}
+
+// Quiz Logic
+function renderQuiz(quizData) {
+    const quizContainer = document.createElement('div');
+    quizContainer.className = 'quiz-container';
+    quizContainer.style.marginTop = '20px';
+    quizContainer.style.padding = '20px';
+    quizContainer.style.background = 'rgba(0,0,0,0.2)';
+    quizContainer.style.borderRadius = '8px';
+    quizContainer.style.border = '1px solid #444';
+
+    let html = '<h3 style="color: #667eea; margin-bottom: 15px;">📝 Knowledge Check</h3>';
+    
+    quizData.forEach((q, qIndex) => {
+        html += `
+            <div class="quiz-question" style="margin-bottom: 20px;">
+                <p style="font-weight: bold; margin-bottom: 10px;">${qIndex + 1}. ${q.question}</p>
+                <div class="quiz-options">
+        `;
+        
+        q.options.forEach((opt, oIndex) => {
+            html += `
+                <label style="display: block; margin: 5px 0; cursor: pointer;">
+                    <input type="radio" name="q${qIndex}" value="${oIndex}"> 
+                    ${opt}
+                </label>
+            `;
+        });
+        
+        html += `</div></div>`;
+    });
+
+    html += `<button id="checkQuizBtn" style="background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Check Answers</button>`;
+    html += `<div id="quizResult" style="margin-top: 10px; font-weight: bold;"></div>`;
+
+    quizContainer.innerHTML = html;
+    stepContent.appendChild(quizContainer);
+
+    document.getElementById('checkQuizBtn').onclick = () => checkQuiz(quizData);
+}
+
+function checkQuiz(quizData) {
+    let allCorrect = true;
+    const resultDiv = document.getElementById('quizResult');
+    
+    quizData.forEach((q, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        const questionDiv = document.querySelectorAll('.quiz-question')[index];
+        
+        if (!selected || parseInt(selected.value) !== q.correct) {
+            allCorrect = false;
+            questionDiv.style.borderLeft = '3px solid #ff6b6b';
+            questionDiv.style.paddingLeft = '10px';
+        } else {
+            questionDiv.style.borderLeft = '3px solid #00ff00';
+            questionDiv.style.paddingLeft = '10px';
+        }
+    });
+
+    if (allCorrect) {
+        currentQuizPassed = true;
+        resultDiv.textContent = '✨ All correct! You can proceed.';
+        resultDiv.style.color = '#00ff00';
+        document.getElementById('checkQuizBtn').style.display = 'none';
+        
+        // Auto-complete the step
+        const key = `${currentLesson.id}-${currentStepIndex}`;
+        if (!getCompletedSteps().has(key)) {
+            toggleStepCompletion();
+        }
+    } else {
+        resultDiv.textContent = '❌ Some answers are incorrect. Please try again.';
+        resultDiv.style.color = '#ff6b6b';
+    }
+}
+
+function showQuizSuccess(alreadyPassed) {
+    const btn = document.getElementById('checkQuizBtn');
+    const result = document.getElementById('quizResult');
+    if (btn) btn.style.display = 'none';
+    if (result) {
+        result.textContent = alreadyPassed ? '✅ Quiz completed' : '✨ All correct!';
+        result.style.color = '#00ff00';
+    }
+    
+    // Disable inputs
+    document.querySelectorAll('.quiz-container input').forEach(input => input.disabled = true);
 }
 
 // Lab Logic
@@ -462,6 +731,29 @@ function setupEventListeners() {
     prevBtn.onclick = prevStep;
     nextBtn.onclick = nextStep;
     stepTick.onclick = toggleStepCompletion;
+    
+    // Menu Toggle
+    if (menuToggle) {
+        menuToggle.onclick = () => {
+            sidebar.classList.add('open');
+        };
+    }
+    
+    if (menuClose) {
+        menuClose.onclick = () => {
+            sidebar.classList.remove('open');
+        };
+    }
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && 
+            sidebar.classList.contains('open') && 
+            !sidebar.contains(e.target) && 
+            e.target !== menuToggle) {
+            sidebar.classList.remove('open');
+        }
+    });
     
     document.getElementById('closeLabModal').onclick = closeLab;
     document.getElementById('runLabBtn').onclick = runLabCode;

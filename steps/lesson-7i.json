@@ -19,6 +19,30 @@
             "content": "<p><strong>Allow players to control time:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">// Initialize\nconst gameState = new GameState();\nconst engine = new GameEngine(gameState);\n\n// Start the game\nengine.start();\n\n// Speed controls\ndocument.getElementById('pauseBtn').addEventListener('click', () => {\n    engine.stop();\n});\n\ndocument.getElementById('playBtn').addEventListener('click', () => {\n    engine.start();\n});\n\ndocument.getElementById('speedSlider').addEventListener('input', (e) => {\n    const speed = parseFloat(e.target.value);\n    engine.setSpeed(speed);\n    console.log(`Game speed: ${speed}x`);\n});</code></div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the game loop.</p>",
+            "quiz": [
+                {
+                    "question": "What is `deltaTime` in the context of a game loop?",
+                    "options": [
+                        "The time difference between the current frame and the previous frame",
+                        "The total time the game has been running",
+                        "The time it takes to render one pixel"
+                    ],
+                    "correct": 0
+                },
+                {
+                    "question": "Why do we multiply `deltaTime` by a speed factor when updating the game state?",
+                    "options": [
+                        "To make the game run faster on slower computers",
+                        "To decouple the game logic update rate from the frame rate, ensuring consistent gameplay speed regardless of FPS",
+                        "To increase the difficulty of the game"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 7i Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've brought your game to life with time.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Implement game loop pattern</div><div class=\"achievement\">✓ Calculate delta time</div><div class=\"achievement\">✓ Manage game time vs real time</div><div class=\"achievement\">✓ Add speed controls</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7j - Complete Game Interface</p>"
         }

@@ -15,6 +15,30 @@
             "content": "<p>JSON file storage seems easy... until something goes wrong.</p><div class=\"info-box\" style=\"border-left-color: #f38ba8; background: rgba(243, 139, 168, 0.1);\"><strong>The Corruption Problem:</strong><br><br>Scenario: You're saving <code>markets.json</code> with new prices<br><br>What SHOULD happen:<br><code>{ \"iron_ore\": 100, \"copper_ore\": 75 }</code><br><br>What CAN happen if you crash mid-write:<br><code>{ \"iron_ore\": 100, \"copper</code><br>(FILE CORRUPTED! Can't parse!)</div><p style=\"margin-top: 15px;\"><strong>Result:</strong> Your entire game database becomes unreadable. Game over.</p><p style=\"margin-top: 15px;\"><strong>Solution:</strong> Use the Safe Write Pattern (next lesson!)</p>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of data storage concepts.</p>",
+            "quiz": [
+                {
+                    "question": "Why do we need data storage in our game?",
+                    "options": [
+                        "To make the game run faster",
+                        "To remember data (like prices) after a server restart",
+                        "To use more hard drive space"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "What is the main risk of writing directly to a JSON file?",
+                    "options": [
+                        "It uses too much memory",
+                        "It's too slow",
+                        "A crash during writing can corrupt the file"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
             "title": "Lesson 2a Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You understand why we need storage and the dangers.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Learned about data persistence</div><div class=\"achievement\">✓ Compared storage options</div><div class=\"achievement\">✓ Understand file corruption risk</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 2b - The Safe Write Pattern</p>"
         }

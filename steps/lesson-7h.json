@@ -19,6 +19,30 @@
             "content": "<p><strong>Implement trading logic:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">    // Add to GameState class\n    buyItem(commodity, quantity, pricePerUnit) {\n        const cost = quantity * pricePerUnit;\n        if (this.player.credits < cost) return false;\n        \n        // Deduct credits\n        this.player.credits -= cost;\n        \n        // Add to inventory\n        const current = this.player.inventory.get(commodity) || 0;\n        this.player.inventory.set(commodity, current + quantity);\n        \n        this.addEvent(`Bought ${quantity}x ${commodity} for ${cost} credits`);\n        this.notifyListeners();\n        return true;\n    }\n    \n    sellItem(commodity, quantity, pricePerUnit) {\n        const current = this.player.inventory.get(commodity) || 0;\n        if (current < quantity) return false;\n        \n        // Add credits\n        const revenue = quantity * pricePerUnit;\n        this.player.credits += revenue;\n        \n        // Remove from inventory\n        this.player.inventory.set(commodity, current - quantity);\n        \n        this.addEvent(`Sold ${quantity}x ${commodity} for ${revenue} credits`);\n        this.notifyListeners();\n        return true;\n    }</code></div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of game state management.</p>",
+            "quiz": [
+                {
+                    "question": "Why is it important to have a centralized Game State?",
+                    "options": [
+                        "It makes the game file size smaller",
+                        "It ensures all parts of the game (UI, logic, save system) see the same consistent data",
+                        "It prevents the player from cheating"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "In the `GameState` class, what does the `notifyListeners` method do?",
+                    "options": [
+                        "It plays a sound effect",
+                        "It sends an email to the developer",
+                        "It calls all registered callback functions to inform them that the state has changed"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
             "title": "Lesson 7h Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built the brain of your game.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Centralized game state</div><div class=\"achievement\">✓ Observer pattern (subscribe/notify)</div><div class=\"achievement\">✓ Event logging system</div><div class=\"achievement\">✓ Inventory management logic</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7i - The Game Loop</p>"
         }

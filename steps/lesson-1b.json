@@ -20,7 +20,35 @@
         },
         {
             "title": "Your First Test!",
-            "content": "<p>You should see output like:</p><div class=\"code-block\"><code class=\"language-text\">=== Time Service Test ===\n\nCurrent HSL: 13 hours since launch\nIs top of hour?: false\nYour local time: 1:47:32 PM\nGame launched: Wed Dec 05 2025 00:00:00 GMT\n\n--- Mathematical Examples ---\n1 hour = 3,600,000 ms = 1 hours = Math.floor() = 1\n2 hours = 7,200,000 ms = 2 hours = Math.floor() = 2\n3 hours = 10,800,000 ms = 3 hours = Math.floor() = 3</code></div><p style=\"margin-top: 20px;\"><strong>🎉 Congratulations! Your first microservice component works!</strong></p><div class=\"achievement\">✓ Built a working TimeService</div>"
+            "content": "<p>You should see output like:</p><div class=\"code-block\"><code class=\"language-text\">=== Time Service Test ===\n\nCurrent HSL: 13 hours since launch\nIs top of hour?: false\nYour local time: 1:47:32 PM\nGame launched: Wed Dec 05 2025 00:00:00 GMT\n\n--- Mathematical Examples ---\n1 hour = 3,600,000 ms = 1 hours = Math.floor() = 1\n2 hours = 7,200,000 ms = 2 hours = Math.floor() = 2\n3 hours = 10,800,000 ms = 3 hours = Math.floor() = 3</code></div>"
+        },
+        {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the TimeService.</p>",
+            "quiz": [
+                {
+                    "question": "Why do we use Math.floor() for HSL?",
+                    "options": [
+                        "To round to the nearest hour",
+                        "To always round down to the current hour",
+                        "To always round up to the next hour"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "How many milliseconds are in one hour?",
+                    "options": [
+                        "60,000",
+                        "360,000",
+                        "3,600,000"
+                    ],
+                    "correct": 2
+                }
+            ]
+        },
+        {
+            "title": "Lesson 1b Complete! 🎉",
+            "content": "<p style=\"font-size: 1.1em;\"><strong>You have successfully built the TimeService.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Implemented HSL calculation</div><div class=\"achievement\">✓ Created singleton service</div><div class=\"achievement\">✓ Verified with test script</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 1c - Logger Utility</p>"
         }
     ]
 }

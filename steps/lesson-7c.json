@@ -19,6 +19,30 @@
             "content": "<p><strong>Add interactivity to show values on hover:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">class InteractiveHeatmap extends MarketHeatmap {\n    constructor(canvasId) {\n        super(canvasId);\n        this.hoveredCell = null;\n        \n        // Mouse move listener\n        this.canvas.addEventListener('mousemove', (e) => {\n            const rect = this.canvas.getBoundingClientRect();\n            const x = e.clientX - rect.left;\n            const y = e.clientY - rect.top;\n            \n            this.hoveredCell = this.getCellAt(x, y);\n            this.draw();\n        });\n        \n        this.canvas.addEventListener('mouseleave', () => {\n            this.hoveredCell = null;\n            this.draw();\n        });\n    }\n    \n    getCellAt(x, y) {\n        const padding = 80;\n        const cellWidth = (this.canvas.width - 2 * padding) / 24;\n        const cellHeight = (this.canvas.height - 2 * padding) / this.items.length;\n        \n        if (x < padding || y < padding) return null;\n        \n        const hour = Math.floor((x - padding) / cellWidth);\n        const itemIdx = Math.floor((y - padding) / cellHeight);\n        \n        if (hour >= 24 || itemIdx >= this.items.length) return null;\n        \n        return { hour, itemIdx };\n    }\n    \n    draw() {\n        super.draw();\n        \n        // Draw tooltip for hovered cell\n        if (this.hoveredCell) {\n            const { hour, itemIdx } = this.hoveredCell;\n            const itemName = this.items[itemIdx];\n            const demand = this.data[itemName][hour];\n            \n            // Tooltip background\n            const ctx = this.canvas.getContext('2d');\n            ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';\n            ctx.fillRect(10, 10, 200, 50);\n            \n            // Tooltip text\n            ctx.fillStyle = '#FFFFFF';\n            ctx.font = 'bold 12px Arial';\n            ctx.textAlign = 'left';\n            ctx.fillText(itemName + ' at Hour ' + hour, 15, 30);\n            ctx.font = '11px Arial';\n            ctx.fillText('Demand: ' + (demand * 100).toFixed(1) + '%', 15, 45);\n        }\n    }\n}\n\n// Usage\nconst interactive = new InteractiveHeatmap('heatmapCanvas');</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event\" target=\"_blank\">MDN: mousemove Event</a> - Track mouse movement</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of heatmaps.</p>",
+            "quiz": [
+                {
+                    "question": "What is the primary purpose of a heatmap?",
+                    "options": [
+                        "To show the temperature of the computer",
+                        "To visualize data intensity using colors",
+                        "To draw a map of the world"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why is the HSL color model useful for heatmaps?",
+                    "options": [
+                        "It allows for smooth transitions between colors (e.g., blue to red) by changing just the Hue value",
+                        "It uses less memory than RGB",
+                        "It is the only color model supported by Canvas"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 7c Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've created professional data visualizations.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Map values to colors</div><div class=\"achievement\">✓ Create grid-based heatmaps</div><div class=\"achievement\">✓ Use HSL for smooth gradients</div><div class=\"achievement\">✓ Add mouse interactivity</div><div class=\"achievement\">✓ Show tooltips on hover</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7d - 2D Coordinate Systems</p>"
         }

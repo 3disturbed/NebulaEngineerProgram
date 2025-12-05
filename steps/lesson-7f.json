@@ -19,6 +19,30 @@
             "content": "<p><strong>Combine galaxy map with navigation controls:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">class IntegratedNavigationUI {\n    constructor(mapCanvasId, dashboardId) {\n        this.renderer = new GalaxyRenderer(mapCanvasId);\n        this.nav = new NavigationSystem({ maxSpeed: 2 });\n        this.dashboard = new NavigationDashboard(dashboardId, this.nav);\n        \n        // Handle map clicks\n        this.renderer.canvas.addEventListener('click', (e) => {\n            const rect = this.renderer.canvas.getBoundingClientRect();\n            const screenX = e.clientX - rect.left;\n            const screenY = e.clientY - rect.top;\n            \n            const worldX = (screenX - this.renderer.canvas.width / 2) / this.renderer.zoom + this.renderer.cameraX;\n            const worldY = (screenY - this.renderer.canvas.height / 2) / this.renderer.zoom + this.renderer.cameraY;\n            \n            const sectorX = Math.floor(worldX);\n            const sectorY = Math.floor(worldY);\n            \n            this.setTarget(sectorX, sectorY);\n        });\n        \n        this.startAnimation();\n    }\n    \n    setTarget(x, y) {\n        this.nav.setTarget(x, y);\n        this.dashboard.update();\n    }\n    \n    startAnimation() {\n        const animate = () => {\n            // Update navigation\n            const arrived = this.nav.update(0.016);  // ~60 FPS, ~1 minute per frame\n            \n            // Update displays\n            this.dashboard.update();\n            this.renderer.cameraX = this.nav.currentSector.x;\n            this.renderer.cameraY = this.nav.currentSector.y;\n            \n            // Render galaxy\n            this.renderer.render(this.galaxy);\n            \n            if (arrived) {\n                console.log('Arrived at destination!');\n            }\n            \n            requestAnimationFrame(animate);\n        };\n        animate();\n    }\n}\n\n// Usage\nconst ui = new IntegratedNavigationUI('galaxyCanvas', 'dashboard');</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event\" target=\"_blank\">MDN: click Event</a> - Handle user clicks</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the navigation dashboard.</p>",
+            "quiz": [
+                {
+                    "question": "In the `NavigationSystem` class, how is `estimatedArrival` calculated?",
+                    "options": [
+                        "It is a random number",
+                        "It is the distance to the target divided by the ship's max speed",
+                        "It is always 1 hour"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "What happens when the user clicks on the galaxy map in the `IntegratedNavigationUI` class?",
+                    "options": [
+                        "The game crashes",
+                        "The click coordinates are converted to world coordinates, and the target sector is set",
+                        "The ship instantly teleports to the clicked location"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 7f Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a complete navigation dashboard.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Calculate routes and distances</div><div class=\"achievement\">✓ Estimate travel times</div><div class=\"achievement\">✓ Display navigation data</div><div class=\"achievement\">✓ Handle map interactions</div><div class=\"achievement\">✓ Integrate map and UI panels</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7g - Complete Web Dashboard</p>"
         }

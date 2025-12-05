@@ -19,6 +19,30 @@
             "content": "<p>Create an endpoint to get details for a specific item:</p><div class=\"code-block\"><code class=\"language-javascript\">// GET /api/market/item/:name - Get single item\napp.get('/api/market/item/:name', (req, res) => {\n    const itemName = req.params.name;\n    analyzer.analyzePrices(items);\n    \n    const item = items.find(i => i.name === itemName);\n    \n    if (!item) {\n        return res.status(404).json({\n            error: 'Item not found',\n            requested: itemName\n        });\n    }\n    \n    res.json({\n        name: item.name,\n        price: parseFloat(item.price.toFixed(2)),\n        supply: item.supply,\n        demand: item.demand,\n        demandRatio: analyzer.getDemandRatio(item.name),\n        priceStatus: item.price > 100 ? 'expensive' : 'cheap'\n    });\n});</code></div><div class=\"hint\"><strong>Test with curl:</strong><br><code>curl http://localhost:3000/api/market/item/Iron%20Ore</code><br><br><strong>Error handling:</strong><br>Returns 404 status if item doesn't exist</div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404\" target=\"_blank\">MDN: HTTP 404 Not Found</a> - Resource doesn't exist</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of REST APIs.</p>",
+            "quiz": [
+                {
+                    "question": "Which HTTP method is used to retrieve data?",
+                    "options": [
+                        "POST",
+                        "GET",
+                        "DELETE"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "What HTTP status code should you return if a requested item is not found?",
+                    "options": [
+                        "200 OK",
+                        "404 Not Found",
+                        "500 Server Error"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 6a Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built the foundation of a REST API.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Understand REST API basics</div><div class=\"achievement\">✓ Learn Express.js framework</div><div class=\"achievement\">✓ Create GET endpoints</div><div class=\"achievement\">✓ Handle URL parameters</div><div class=\"achievement\">✓ Return proper HTTP status codes</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 6b - Adding History & Advanced Endpoints</p>"
         }

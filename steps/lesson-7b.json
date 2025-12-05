@@ -19,6 +19,30 @@
             "content": "<p><strong>Update chart as new price data arrives:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">class PriceChart {\n    constructor(canvasId, maxDataPoints = 24) {\n        this.canvas = document.getElementById(canvasId);\n        this.data = [];\n        this.maxDataPoints = maxDataPoints;\n        this.colors = {\n            'Iron Ore': '#FF6B35',\n            'Copper Ore': '#F7931E',\n            'Uranium Ore': '#00D084'\n        };\n    }\n    \n    addPrice(itemName, price) {\n        // Initialize if needed\n        if (!this.data[itemName]) {\n            this.data[itemName] = [];\n        }\n        \n        // Add new data point\n        this.data[itemName].push(price);\n        \n        // Keep only recent data (sliding window)\n        if (this.data[itemName].length > this.maxDataPoints) {\n            this.data[itemName].shift();\n        }\n        \n        // Redraw chart\n        this.draw();\n    }\n    \n    draw() {\n        const ctx = this.canvas.getContext('2d');\n        ctx.fillStyle = '#1a1a2e';\n        ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);\n        \n        // Draw axes\n        drawChart(this.canvas, this.getAllPrices(), 'Market Prices');\n        \n        // Draw each item's line\n        for (const [itemName, prices] of Object.entries(this.data)) {\n            if (prices.length > 0) {\n                drawPriceLine(this.canvas, prices, this.colors[itemName]);\n            }\n        }\n    }\n    \n    getAllPrices() {\n        return Object.values(this.data).flat();\n    }\n}\n\n// Usage with WebSocket\nconst chart = new PriceChart('priceChart');\n\nsocket.on('market:update', (data) => {\n    data.items.forEach(item => {\n        chart.addPrice(item.name, item.price);\n    });\n});</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes\" target=\"_blank\">MDN: JavaScript Classes</a> - Object-oriented programming</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of charting.</p>",
+            "quiz": [
+                {
+                    "question": "Why do we need to scale data values when drawing on a canvas?",
+                    "options": [
+                        "Because canvas pixels are always 0-100",
+                        "Because data values (e.g., price $500) might be larger or smaller than the canvas height in pixels",
+                        "To make the lines thicker"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "What happens if we don't clear the canvas (using `fillRect` or `clearRect`) before redrawing the chart?",
+                    "options": [
+                        "The new chart is drawn on top of the old one, creating a mess",
+                        "The old chart disappears automatically",
+                        "The canvas throws an error"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 7b Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a professional price chart visualization.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Draw axes and grid lines</div><div class=\"achievement\">✓ Plot data points accurately</div><div class=\"achievement\">✓ Connect points with smooth lines</div><div class=\"achievement\">✓ Handle real-time data updates</div><div class=\"achievement\">✓ Scale data to fit canvas</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7c - Market Heatmaps</p>"
         }

@@ -15,6 +15,30 @@
             "content": "<p><strong>Example 1: Iron Ore Craze</strong></p><div class=\"hint\"><strong>Trades in the last hour:</strong><br>• 8000 units bought<br>• 2000 units sold<br><br>Demand Ratio = 8000 / (8000 + 2000) = 0.8<br><br>Result: HIGH DEMAND → Price goes UP 📈</div><p style=\"margin-top: 15px;\"><strong>Example 2: Uranium Panic</strong></p><div class=\"hint\"><strong>Trades in the last hour:</strong><br>• 500 units bought<br>• 4500 units sold<br><br>Demand Ratio = 500 / (500 + 4500) = 0.1<br><br>Result: PANIC SELLING → Price goes DOWN 📉</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of supply and demand.</p>",
+            "quiz": [
+                {
+                    "question": "If buyVolume is 800 and sellVolume is 200, what is the demandRatio?",
+                    "options": [
+                        "0.2 (Low Demand)",
+                        "0.5 (Balanced)",
+                        "0.8 (High Demand)"
+                    ],
+                    "correct": 2
+                },
+                {
+                    "question": "What happens to the price when the demandRatio is very low (e.g., 0.1)?",
+                    "options": [
+                        "Price goes UP",
+                        "Price goes DOWN",
+                        "Price stays the same"
+                    ],
+                    "correct": 1
+                }
+            ]
+        },
+        {
             "title": "Lesson 3a Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You understand the economic principle that drives markets.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Know supply & demand basics</div><div class=\"achievement\">✓ Understand demand ratio formula</div><div class=\"achievement\">✓ Can interpret the numbers</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 3b - Building the Market Analyzer</p>"
         }

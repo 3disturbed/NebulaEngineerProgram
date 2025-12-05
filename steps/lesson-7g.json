@@ -19,6 +19,30 @@
             "content": "<p><strong>Bring all components together:</strong></p><div class=\"code-block\"><code class=\"language-javascript\">class CompleteDashboard {\n    constructor(config) {\n        this.config = config;\n        this.dataService = new DashboardDataService(config.serverUrl);\n        this.panels = new Map();\n        this.galaxyRenderer = null;\n        \n        this.initPanels();\n        this.setupDataBinding();\n    }\n    \n    initPanels() {\n        // Create all dashboard panels\n        this.panels.set('prices', new PriceChartPanel('pricePanel', 'Market Prices'));\n        this.panels.set('heatmap', new HeatmapPanel('heatmapPanel', 'Supply & Demand'));\n        this.panels.set('nav', new NavigationPanel('navPanel', 'Navigation'));\n        \n        // Add event listeners for panel toggling\n        document.querySelectorAll('[data-toggle-panel]').forEach(btn => {\n            btn.addEventListener('click', (e) => {\n                const panelId = e.target.dataset.togglePanel;\n                const panel = this.panels.get(panelId);\n                if (panel) panel.toggle();\n            });\n        });\n    }\n    \n    setupDataBinding() {\n        // Subscribe to data service\n        this.dataService.subscribe((data) => {\n            // Update all panels\n            this.panels.forEach((panel, key) => {\n                switch(key) {\n                    case 'prices':\n                        panel.update(data.market);\n                        break;\n                    case 'heatmap':\n                        panel.update(data.market);\n                        break;\n                    case 'nav':\n                        panel.update(data.player);\n                        break;\n                }\n            });\n        });\n        \n        // Connect to server\n        this.dataService.connect();\n        \n        // Request initial data\n        this.dataService.requestData('all');\n    }\n    \n    setupMapInteraction(canvasId) {\n        this.galaxyRenderer = new GalaxyRenderer(canvasId);\n        \n        // Map clicks set navigation targets\n        this.galaxyRenderer.canvas.addEventListener('click', (e) => {\n            const rect = this.galaxyRenderer.canvas.getBoundingClientRect();\n            const x = (e.clientX - rect.left - this.galaxyRenderer.canvas.width / 2) / this.galaxyRenderer.zoom + this.galaxyRenderer.cameraX;\n            const y = (e.clientY - rect.top - this.galaxyRenderer.canvas.height / 2) / this.galaxyRenderer.zoom + this.galaxyRenderer.cameraY;\n            \n            // Send navigation target to server\n            this.dataService.socket.emit('nav:setTarget', {\n                x: Math.floor(x),\n                y: Math.floor(y)\n            });\n        });\n    }\n    \n    render() {\n        // Render all panels and map continuously\n        const animate = () => {\n            if (this.galaxyRenderer) {\n                this.galaxyRenderer.render();\n            }\n            requestAnimationFrame(animate);\n        };\n        animate();\n    }\n}\n\n// Usage\nconst dashboard = new CompleteDashboard({\n    serverUrl: 'http://localhost:3000'\n});\ndashboard.setupMapInteraction('galaxyCanvas');\ndashboard.render();</code></div><div class=\"read-more\"><a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map\" target=\"_blank\">MDN: Map</a> - Store panel references</div>"
         },
         {
+            "title": "Knowledge Check",
+            "content": "<p>Verify your understanding of the web dashboard architecture.</p>",
+            "quiz": [
+                {
+                    "question": "What is the purpose of the `DashboardDataService` class?",
+                    "options": [
+                        "To draw the dashboard on the screen",
+                        "To handle real-time data updates from the server via WebSockets",
+                        "To calculate the price of goods"
+                    ],
+                    "correct": 1
+                },
+                {
+                    "question": "Why is a modular panel system (using `DashboardPanel` class) beneficial?",
+                    "options": [
+                        "It allows each panel to update independently and be toggled on/off",
+                        "It makes the code run faster",
+                        "It is required by the browser"
+                    ],
+                    "correct": 0
+                }
+            ]
+        },
+        {
             "title": "Lesson 7g Complete! 🎉",
             "content": "<p style=\"font-size: 1.1em;\"><strong>You've built a complete web dashboard.</strong></p><div style=\"margin: 20px 0;\"><div class=\"achievement\">✓ Responsive grid layout</div><div class=\"achievement\">✓ Real-time WebSocket updates</div><div class=\"achievement\">✓ Modular panel system</div><div class=\"achievement\">✓ Chart and heatmap visualization</div><div class=\"achievement\">✓ Interactive galaxy map</div></div><p style=\"margin-top: 20px; color: #667eea; font-weight: bold;\">→ Next: Lesson 7h - Complete Game Interface</p>"
         }
