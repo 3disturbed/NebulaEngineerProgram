@@ -62,12 +62,23 @@
 }
 
 /* Accordion Styles */
+.lesson-item {
+    display: flex;
+    flex-direction: column; /* Ensure steps are below header */
+}
+
+.lesson-header {
+    width: 100%;
+    cursor: pointer;
+}
+
 .lesson-steps {
     list-style: none;
     margin-top: 10px;
     padding-left: 10px;
     border-left: 2px solid var(--border-color);
     display: none; /* Hidden by default */
+    width: 100%; /* Full width */
 }
 
 .lesson-item.expanded .lesson-steps {
@@ -120,4 +131,27 @@
     opacity: 0.6;
     pointer-events: none;
     filter: grayscale(1);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .top-bar {
+        padding-left: 60px !important; /* Space for hamburger menu */
+    }
+
+    .content-area {
+        padding-bottom: 100px; /* Ensure bottom content (buttons) is visible */
+    }
+    
+    .nav-buttons {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 15px; /* Larger touch target */
+    }
 }
