@@ -275,6 +275,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin-top: 50px;
+    margin-bottom: 40px;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
 }
@@ -564,6 +565,27 @@ textarea#labCode {
 
 .lesson-item.completed .lesson-progress-fill {
     background: #0f0;
+}
+
+/* Status Bar */
+.status-bar {
+    height: 30px;
+    background-color: var(--sidebar-bg);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 0.8rem;
+    color: #a6adc8;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Mobile Lab Layout */
